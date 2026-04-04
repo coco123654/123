@@ -7,11 +7,13 @@ Panels:
   C) GO enrichment dot plot
 """
 
+import re
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.patches import Patch
+from matplotlib.colors import LinearSegmentedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram
 from scipy.spatial.distance import pdist
 from scipy.stats import fisher_exact
@@ -106,13 +108,13 @@ for tp in time_points:
 
     for gene in common_genes:
         # Asymbiotic fold change
-        baseline_val = float(asym_tpm.loc[gene, baseline_col]) if gene in asym_tpm.index else 0
-        asym_val = float(asym_tpm.loc[gene, asym_col_mean]) if gene in asym_tpm.index else 0
+        baseline_val = float(asym_tpm.loc[gene, baseline_col])
+        asym_val = float(asym_tpm.loc[gene, asym_col_mean])
         asym_fc_vals[gene] = np.log2((asym_val + pseudocount) / (baseline_val + pseudocount))
 
         # Symbiotic fold change
-        baseline_val_sym = float(sym_tpm.loc[gene, baseline_col]) if gene in sym_tpm.index else 0
-        sym_val = float(sym_tpm.loc[gene, sym_col_mean]) if gene in sym_tpm.index else 0
+        baseline_val_sym = float(sym_tpm.loc[gene, baseline_col])
+        sym_val = float(sym_tpm.loc[gene, sym_col_mean])
         sym_fc_vals[gene] = np.log2((sym_val + pseudocount) / (baseline_val_sym + pseudocount))
 
     asym_log2fc[tp] = asym_fc_vals
@@ -194,8 +196,9 @@ for i, gene in enumerate(all_degs_list):
         heatmap_data[i, j] = asym_log2fc[tp].get(gene, 0)
         heatmap_data[i, j + len(time_points)] = sym_log2fc[tp].get(gene, 0)
 
-# Clip extreme values for better visualization
-heatmap_data = np.clip(heatmap_data, -15, 15)
+# Clip extreme values to ±15 for heatmap color scale readability
+LOG2FC_CLIP = 15
+heatmap_data = np.clip(heatmap_data, -LOG2FC_CLIP, LOG2FC_CLIP)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 4.  GO ENRICHMENT ANALYSIS
@@ -211,7 +214,6 @@ def parse_go_terms(go_str):
 
     # Format from count file: "GO:0016787(molecular_function:hydrolase activity)"
     # Format from TPM file: "GO:0016787" with "MF:hydrolase activity;"
-    import re
     # Pattern 1: GO:XXXXXXX(category:description)
     pattern1 = re.findall(r'(GO:\d+)\(([^:]+):([^)]+)\)', go_str)
     for go_id, category, desc in pattern1:
@@ -511,11 +513,10 @@ else:
 
 # Heatmap
 ax_heatmap = fig.add_subplot(gs_b[0, 1])
-vmax = 15
-vmin = -15
+vmax = LOG2FC_CLIP
+vmin = -LOG2FC_CLIP
 
 # Use orange-white-blue colormap like the literature
-from matplotlib.colors import LinearSegmentedColormap
 colors_hm = ['#2166AC', '#67A9CF', '#D1E5F0', '#FDDBC7', '#EF8A62', '#B2182B']
 cmap_custom = LinearSegmentedColormap.from_list('custom_rwb', colors_hm, N=256)
 
