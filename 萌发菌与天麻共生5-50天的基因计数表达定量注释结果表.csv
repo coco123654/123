@@ -1,0 +1,26 @@
+﻿Gene_ID,Gene_Name,Category,Description,KEGG,GO,Count_5d,Count_10d,Count_20d,Count_30d,Count_40d,Count_50d
+Gene001,MyNrt,MFS transporter,Nitrate/nitrite transporter MFS family,ko05611,GO:2100567,556,2922,5713,6729,7786,7887
+Gene002,MyNir,MFS transporter,Nitrite reductase,ko03427,GO:6246880,791,4168,7875,10449,11009,10071
+Gene003,MFS_03,MFS transporter,Sugar transporter MFS family,ko05107,GO:3976242,345,1668,3664,4246,5122,4850
+Gene004,MFS_04,MFS transporter,Oligopeptide transporter MFS,ko09808,GO:5197571,173,822,1944,1860,2326,2852
+Gene005,MFS_05,MFS transporter,Hexose transporter MFS,ko06988,GO:3640328,739,3894,8127,8479,9754,11325
+Gene006,GPCR_01,GPCR,G-protein coupled receptor class A,ko08357,GO:2355531,696,2120,4001,4207,6072,5816
+Gene007,GPCR_02,GPCR,cAMP receptor-like GPCR,ko01728,GO:4264908,1039,2487,4138,6989,6202,7166
+Gene008,GPCR_03,GPCR,Pheromone receptor Ste3-like,ko03782,GO:6963135,762,2119,3503,4514,6016,6357
+Gene009,NIT_01,Nitrogen metabolism,Glutamine synthetase,ko08651,GO:4788340,563,2956,4763,6809,6534,8018
+Gene010,NIT_02,Nitrogen metabolism,Glutamate dehydrogenase,ko08330,GO:5232406,184,1014,2175,2531,2914,3081
+Gene011,NIT_03,Nitrogen metabolism,Nitrate reductase,ko02542,GO:2332397,295,1277,3206,3900,3548,3725
+Gene012,MyAmid,IAA synthesis,"Amidase MyAmid, IAA biosynthesis",ko02365,GO:2286643,357,2287,4179,4879,5996,5885
+Gene013,IAA_02,IAA synthesis,Tryptophan aminotransferase,ko06301,GO:9415398,903,5450,8564,12152,11482,13976
+Gene014,IAA_03,IAA synthesis,Indole-3-pyruvate decarboxylase,ko07619,GO:7742471,94,587,1204,1444,1772,1570
+Gene015,LAC_01,Lignin-modifying,Laccase,ko08576,GO:7062903,421,1377,2580,3110,2898,2743
+Gene016,POD_01,Lignin-modifying,Manganese peroxidase,ko06348,GO:1423570,147,436,758,888,867,928
+Gene017,POD_02,Lignin-modifying,Versatile peroxidase,ko04330,GO:6118922,873,3566,5912,6003,6605,6049
+Gene018,PKA_01,Signal transduction,cAMP-dependent protein kinase,ko07819,GO:7655623,379,1127,1810,3042,3461,3430
+Gene019,MAP_01,Signal transduction,MAPK kinase,ko06320,GO:5010912,188,553,943,1158,1288,1791
+Gene020,HOG_01,Signal transduction,HOG pathway kinase,ko01255,GO:1575278,1049,2258,5415,6348,6379,7399
+Gene021,CAT_01,Stress response,Catalase,ko03193,GO:4912942,378,787,1155,1691,1869,2054
+Gene022,HSP_01,Stress response,Heat shock protein 70,ko08266,GO:5465150,614,1034,2070,2526,3037,3338
+Gene023,CW_01,Cell wall,Glucanase,ko08190,GO:9551881,468,811,1254,1576,1816,1954
+Gene024,CW_02,Cell wall,Chitinase,ko05976,GO:5040479,430,839,1208,1744,1981,2414
+Gene025,TF_01,Transcription factor,Zinc finger transcription factor,ko05363,GO:5834357,404,563,1093,1278,1414,1528
