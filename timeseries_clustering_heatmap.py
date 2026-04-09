@@ -120,7 +120,8 @@ lfc_combined = np.hstack([m_lfc_arr, ms_lfc_arr])
 
 labels = []
 # For ALL categories: determine sub-group (sym-up & asym-down first)
-sub_groups = []  # 0 = sym-up & asym-down, 1 = sym-up & asym-up, 2 = sym-down & asym-down, 3 = others
+# 0 = sym↑asym↓, 1 = both↑, 2 = both↓, 3 = sym↓asym↑, 4 = other
+sub_groups = []
 
 for i, gene in enumerate(common_genes):
     m  = m_lfc_arr[i]
@@ -309,7 +310,8 @@ for ci in [0, 1, 2, 6]:
     ax_.axis("off")
 
 ax_asym_label = fig.add_subplot(gs[0, 3])
-ax_asym_label.set_xlim(0, 1); ax_asym_label.set_ylim(0, 1)
+ax_asym_label.set_xlim(0, 1)
+ax_asym_label.set_ylim(0, 1)
 ax_asym_label.axhspan(0.15, 0.85, color="#E8943A", alpha=0.9)
 ax_asym_label.text(
     0.5, 0.5, "Asymbiotic", ha="center", va="center",
@@ -321,7 +323,8 @@ ax_gap_top = fig.add_subplot(gs[0, 4])
 ax_gap_top.axis("off")
 
 ax_sym_label = fig.add_subplot(gs[0, 5])
-ax_sym_label.set_xlim(0, 1); ax_sym_label.set_ylim(0, 1)
+ax_sym_label.set_xlim(0, 1)
+ax_sym_label.set_ylim(0, 1)
 ax_sym_label.axhspan(0.15, 0.85, color="#1B6FB5", alpha=0.9)
 ax_sym_label.text(
     0.5, 0.5, "Symbiotic", ha="center", va="center",
