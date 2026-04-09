@@ -1,0 +1,578 @@
+GO_ID,GO_Term,Annotated,Significant,Expected,elimKS_pvalue,Ontology
+GO:0045859,regulation of protein kinase activity,6,5,0.28,2.217748e-04,BP
+GO:0120029,proton export across plasma membrane,11,4,0.51,6.886330e-02,BP
+GO:0032012,regulation of ARF protein signal transduction,13,4,0.61,1.244309e-01,BP
+GO:0044282,small molecule catabolic process,10,3,0.47,1.703273e-01,BP
+GO:0008643,carbohydrate transport,52,8,2.42,1.711634e-01,BP
+GO:0042438,melanin biosynthetic process,5,2,0.23,1.877550e-01,BP
+GO:0032974,amino acid transmembrane export from vacuole,5,2,0.23,1.944260e-01,BP
+GO:0006614,SRP-dependent cotranslational protein targeting to membrane,11,3,0.51,2.013408e-01,BP
+GO:0006613,cotranslational protein targeting to membrane,11,3,0.51,2.013408e-01,BP
+GO:0019628,urate catabolic process,6,2,0.28,2.200411e-01,BP
+GO:0006612,protein targeting to membrane,12,3,0.56,2.341360e-01,BP
+GO:0006810,transport,74,9,3.44,2.475787e-01,BP
+GO:0071586,CAAX-box protein processing,6,2,0.28,2.512600e-01,BP
+GO:0002182,cytoplasmic translational elongation,6,2,0.28,2.803369e-01,BP
+GO:0006515,protein quality control for misfolded or incompletely synthesized proteins,6,2,0.28,3.050480e-01,BP
+GO:0045047,protein targeting to ER,15,3,0.70,3.261639e-01,BP
+GO:0009059,macromolecule biosynthetic process,41,6,1.91,3.670689e-01,BP
+GO:0006458,'de novo' protein folding,8,2,0.37,3.891423e-01,BP
+GO:0006144,purine nucleobase metabolic process,10,2,0.47,4.098751e-01,BP
+GO:0008654,phospholipid biosynthetic process,29,4,1.35,4.170364e-01,BP
+GO:0009057,macromolecule catabolic process,9,2,0.42,4.177435e-01,BP
+GO:0006164,purine nucleotide biosynthetic process,8,2,0.37,4.183847e-01,BP
+GO:0006357,regulation of transcription by RNA polymerase II,79,9,3.68,4.289800e-01,BP
+GO:0006189,'de novo' IMP biosynthetic process,16,3,0.74,4.360391e-01,BP
+GO:0006188,IMP biosynthetic process,16,3,0.74,4.360391e-01,BP
+GO:0000079,regulation of cyclin-dependent protein serine/threonine kinase activity,17,3,0.79,4.418789e-01,BP
+GO:0006414,translational elongation,9,2,0.42,4.675151e-01,BP
+GO:0071852,fungal-type cell wall organization or biogenesis,17,3,0.79,5.016316e-01,BP
+GO:0006487,protein N-linked glycosylation,21,3,0.98,5.066331e-01,BP
+GO:0022414,reproductive process,41,5,1.91,5.318234e-01,BP
+GO:0009231,riboflavin biosynthetic process,11,2,0.51,5.464127e-01,BP
+GO:0009101,glycoprotein biosynthetic process,23,3,1.07,5.491867e-01,BP
+GO:0009308,amine metabolic process,19,3,0.88,5.519473e-01,BP
+GO:0016485,protein processing,13,2,0.61,5.771568e-01,BP
+GO:0009056,catabolic process,77,7,3.58,5.803527e-01,BP
+GO:0010960,magnesium ion homeostasis,12,2,0.56,5.861016e-01,BP
+GO:0007007,inner mitochondrial membrane organization,5,1,0.23,5.874480e-01,BP
+GO:0051028,mRNA transport,23,3,1.07,5.927200e-01,BP
+GO:0006878,intracellular copper ion homeostasis,11,2,0.51,5.943620e-01,BP
+GO:0006865,amino acid transport,32,4,1.49,6.042047e-01,BP
+GO:0051234,establishment of localization,310,20,14.43,6.222757e-01,BP
+GO:0032511,late endosome to vacuole transport via multivesicular body sorting pathway,5,1,0.23,6.298891e-01,BP
+GO:0032509,endosome transport via multivesicular body sorting pathway,5,1,0.23,6.298891e-01,BP
+GO:0006696,ergosterol biosynthetic process,5,1,0.23,6.321168e-01,BP
+GO:0046165,alcohol biosynthetic process,5,1,0.23,6.321168e-01,BP
+GO:0061982,meiosis I cell cycle process,25,3,1.16,6.338785e-01,BP
+GO:1903046,meiotic cell cycle process,25,3,1.16,6.338785e-01,BP
+GO:1990748,cellular detoxification,5,1,0.23,6.380227e-01,BP
+GO:0006308,DNA catabolic process,5,1,0.23,6.408288e-01,BP
+GO:0006623,protein targeting to vacuole,6,1,0.28,6.452280e-01,BP
+GO:0044208,'de novo' AMP biosynthetic process,5,1,0.23,6.465340e-01,BP
+GO:0006167,AMP biosynthetic process,5,1,0.23,6.465340e-01,BP
+GO:0051179,localization,323,20,15.03,6.529616e-01,BP
+GO:1901136,carbohydrate derivative catabolic process,5,1,0.23,6.542602e-01,BP
+GO:0090304,nucleic acid metabolic process,5,1,0.23,6.563827e-01,BP
+GO:0055129,L-proline biosynthetic process,6,1,0.28,6.623174e-01,BP
+GO:0007023,post-chaperonin tubulin folding pathway,5,1,0.23,6.727430e-01,BP
+GO:0046148,pigment biosynthetic process,26,3,1.21,6.763269e-01,BP
+GO:0050794,regulation of cellular process,385,23,17.92,6.872579e-01,BP
+GO:0007033,vacuole organization,7,1,0.33,6.875209e-01,BP
+GO:0045324,late endosome to vacuole transport,6,1,0.28,6.881014e-01,BP
+GO:0007165,signal transduction,359,21,16.71,6.908655e-01,BP
+GO:0044283,small molecule biosynthetic process,44,4,2.05,6.968084e-01,BP
+GO:0006813,potassium ion transport,6,1,0.28,7.035832e-01,BP
+GO:0006857,oligopeptide transport,16,2,0.74,7.130744e-01,BP
+GO:0042364,water-soluble vitamin biosynthetic process,30,3,1.40,7.146759e-01,BP
+GO:0009110,vitamin biosynthetic process,30,3,1.40,7.146759e-01,BP
+GO:0006766,vitamin metabolic process,30,3,1.40,7.146759e-01,BP
+GO:0051321,meiotic cell cycle,15,2,0.70,7.154112e-01,BP
+GO:0000041,transition metal ion transport,7,1,0.33,7.196464e-01,BP
+GO:0036085,GDP-fucose import into Golgi lumen,6,1,0.28,7.235417e-01,BP
+GO:0015986,proton motive force-driven ATP synthesis,32,3,1.49,7.254128e-01,BP
+GO:0006754,ATP biosynthetic process,32,3,1.49,7.254128e-01,BP
+GO:0015940,pantothenate biosynthetic process,7,1,0.33,7.269204e-01,BP
+GO:0007034,vacuolar transport,45,4,2.09,7.316619e-01,BP
+GO:0007021,tubulin complex assembly,6,1,0.28,7.338277e-01,BP
+GO:1901135,carbohydrate derivative metabolic process,17,2,0.79,7.357763e-01,BP
+GO:0015833,peptide transport,17,2,0.79,7.364517e-01,BP
+GO:0046034,ATP metabolic process,7,1,0.33,7.413506e-01,BP
+GO:0042440,pigment metabolic process,30,3,1.40,7.421516e-01,BP
+GO:0006596,polyamine biosynthetic process,9,1,0.42,7.454403e-01,BP
+GO:0042401,biogenic amine biosynthetic process,9,1,0.42,7.454403e-01,BP
+GO:0009309,amine biosynthetic process,9,1,0.42,7.454403e-01,BP
+GO:0006576,biogenic amine metabolic process,9,1,0.42,7.454403e-01,BP
+GO:0044550,secondary metabolite biosynthetic process,126,8,5.86,7.500297e-01,BP
+GO:0019805,quinolinate biosynthetic process,6,1,0.28,7.520527e-01,BP
+GO:0006569,L-tryptophan catabolic process,6,1,0.28,7.520527e-01,BP
+GO:0034354,'de novo' NAD+ biosynthetic process from L-tryptophan,6,1,0.28,7.520527e-01,BP
+GO:0019748,secondary metabolic process,127,8,5.91,7.540596e-01,BP
+GO:0006694,steroid biosynthetic process,23,2,1.07,7.597275e-01,BP
+GO:0030837,negative regulation of actin filament polymerization,6,1,0.28,7.602118e-01,BP
+GO:0051494,negative regulation of cytoskeleton organization,6,1,0.28,7.602118e-01,BP
+GO:0030163,protein catabolic process,57,5,2.65,7.620533e-01,BP
+GO:0140056,organelle localization by membrane tethering,7,1,0.33,7.689270e-01,BP
+GO:0022406,membrane docking,7,1,0.33,7.689270e-01,BP
+GO:0051640,organelle localization,7,1,0.33,7.689270e-01,BP
+GO:0045721,negative regulation of gluconeogenesis,10,1,0.47,7.694950e-01,BP
+GO:0045912,negative regulation of carbohydrate metabolic process,10,1,0.47,7.694950e-01,BP
+GO:0006109,regulation of carbohydrate metabolic process,10,1,0.47,7.694950e-01,BP
+GO:0009892,negative regulation of metabolic process,10,1,0.47,7.694950e-01,BP
+GO:0009890,negative regulation of biosynthetic process,10,1,0.47,7.694950e-01,BP
+GO:0006298,mismatch repair,19,2,0.88,7.715714e-01,BP
+GO:0043161,proteasome-mediated ubiquitin-dependent protein catabolic process,41,4,1.91,7.722013e-01,BP
+GO:0031503,protein-containing complex localization,6,1,0.28,7.730093e-01,BP
+GO:0006869,lipid transport,18,2,0.84,7.765733e-01,BP
+GO:0006656,phosphatidylcholine biosynthetic process,8,1,0.37,7.841032e-01,BP
+GO:0044281,small molecule metabolic process,124,8,5.77,7.925358e-01,BP
+GO:0008202,steroid metabolic process,26,2,1.21,7.948400e-01,BP
+GO:0007005,mitochondrion organization,19,2,0.88,7.959896e-01,BP
+GO:0071985,multivesicular body sorting pathway,9,1,0.42,7.967932e-01,BP
+GO:0030036,actin cytoskeleton organization,18,2,0.84,7.984243e-01,BP
+GO:0006749,glutathione metabolic process,8,1,0.37,8.018548e-01,BP
+GO:0070647,protein modification by small protein conjugation or removal,147,8,6.84,8.093576e-01,BP
+GO:0043687,post-translational protein modification,147,8,6.84,8.093576e-01,BP
+GO:0030029,actin filament-based process,19,2,0.88,8.177962e-01,BP
+GO:0005975,carbohydrate metabolic process,607,33,28.25,8.209169e-01,BP
+GO:0016192,vesicle-mediated transport,178,10,8.28,8.263595e-01,BP
+GO:0010498,proteasomal protein catabolic process,46,4,2.14,8.293441e-01,BP
+GO:0016050,vesicle organization,10,1,0.47,8.319260e-01,BP
+GO:0009058,biosynthetic process,333,16,15.50,8.344123e-01,BP
+GO:0007006,mitochondrial membrane organization,15,1,0.70,8.382713e-01,BP
+GO:0010467,gene expression,8,1,0.37,8.413130e-01,BP
+GO:0005992,trehalose biosynthetic process,8,1,0.37,8.414139e-01,BP
+GO:0007163,establishment or maintenance of cell polarity,21,2,0.98,8.482880e-01,BP
+GO:0043087,regulation of GTPase activity,9,1,0.42,8.488174e-01,BP
+GO:0006470,protein dephosphorylation,69,5,3.21,8.500925e-01,BP
+GO:0001510,RNA methylation,9,1,0.42,8.509122e-01,BP
+GO:0006013,mannose metabolic process,15,1,0.70,8.521097e-01,BP
+GO:0045292,"mRNA cis splicing, via spliceosome",13,1,0.61,8.526591e-01,BP
+GO:0009084,L-glutamine family amino acid biosynthetic process,14,1,0.65,8.531334e-01,BP
+GO:0015693,magnesium ion transport,12,1,0.56,8.534499e-01,BP
+GO:0008150,biological_process,5390,241,250.87,8.558393e-01,BP
+GO:0051604,protein maturation,34,3,1.58,8.593051e-01,BP
+GO:0055085,transmembrane transport,109,6,5.07,8.614962e-01,BP
+GO:0015914,phospholipid transport,14,1,0.65,8.631796e-01,BP
+GO:0141124,intracellular signaling cassette,121,8,5.63,8.647689e-01,BP
+GO:0080090,regulation of primary metabolic process,19,1,0.88,8.730851e-01,BP
+GO:0030968,endoplasmic reticulum unfolded protein response,10,1,0.47,8.747881e-01,BP
+GO:0034976,response to endoplasmic reticulum stress,10,1,0.47,8.747881e-01,BP
+GO:0043414,macromolecule methylation,44,3,2.05,8.766964e-01,BP
+GO:0006511,ubiquitin-dependent protein catabolic process,133,7,6.19,8.777100e-01,BP
+GO:0019222,regulation of metabolic process,20,1,0.93,8.792319e-01,BP
+GO:0006048,UDP-N-acetylglucosamine biosynthetic process,9,1,0.42,8.801901e-01,BP
+GO:0030001,metal ion transport,14,1,0.65,8.802100e-01,BP
+GO:0006406,mRNA export from nucleus,15,1,0.70,8.807689e-01,BP
+GO:1902531,regulation of intracellular signal transduction,10,1,0.47,8.882341e-01,BP
+GO:0006914,autophagy,67,4,3.12,8.972850e-01,BP
+GO:0061919,process utilizing autophagic mechanism,67,4,3.12,8.972850e-01,BP
+GO:0006397,mRNA processing,184,10,8.56,9.031947e-01,BP
+GO:0006811,monoatomic ion transport,18,1,0.84,9.056451e-01,BP
+GO:0008610,lipid biosynthetic process,43,2,2.00,9.075518e-01,BP
+GO:0006457,protein folding,66,4,3.07,9.103004e-01,BP
+GO:0061024,membrane organization,28,1,1.30,9.103959e-01,BP
+GO:0006897,endocytosis,27,1,1.26,9.116064e-01,BP
+GO:0098657,import into cell,27,1,1.26,9.116064e-01,BP
+GO:0009073,aromatic amino acid family biosynthetic process,12,1,0.56,9.118067e-01,BP
+GO:0006796,phosphate-containing compound metabolic process,1099,55,51.15,9.132487e-01,BP
+GO:0016043,cellular component organization,65,3,3.03,9.153749e-01,BP
+GO:0016311,dephosphorylation,96,6,4.47,9.162860e-01,BP
+GO:0007264,small GTPase-mediated signal transduction,82,5,3.82,9.179729e-01,BP
+GO:0043248,proteasome assembly,15,1,0.70,9.182272e-01,BP
+GO:0043170,macromolecule metabolic process,1195,60,55.62,9.185862e-01,BP
+GO:0006506,GPI anchor biosynthetic process,35,2,1.63,9.214920e-01,BP
+GO:0051128,regulation of cellular component organization,16,1,0.74,9.226253e-01,BP
+GO:0007166,cell surface receptor signaling pathway,256,10,11.92,9.257602e-01,BP
+GO:0016071,mRNA metabolic process,194,10,9.03,9.261857e-01,BP
+GO:0006260,DNA replication,74,3,3.44,9.264888e-01,BP
+GO:0006606,protein import into nucleus,20,1,0.93,9.265331e-01,BP
+GO:0016197,endosomal transport,19,1,0.88,9.266485e-01,BP
+GO:0006004,fucose metabolic process,47,3,2.19,9.307559e-01,BP
+GO:0016310,phosphorylation,1005,49,46.78,9.331163e-01,BP
+GO:0034599,cellular response to oxidative stress,124,4,5.77,9.334689e-01,BP
+GO:0009116,nucleoside metabolic process,12,1,0.56,9.335757e-01,BP
+GO:0071840,cellular component organization or biogenesis,102,5,4.75,9.341898e-01,BP
+GO:0016579,protein deubiquitination,45,3,2.09,9.345660e-01,BP
+GO:0006417,regulation of translation,15,1,0.70,9.383785e-01,BP
+GO:0062197,cellular response to chemical stress,129,4,6.00,9.409634e-01,BP
+GO:0070887,cellular response to chemical stimulus,129,4,6.00,9.409634e-01,BP
+GO:0042221,response to chemical,129,4,6.00,9.409634e-01,BP
+GO:0070646,protein modification by small protein removal,47,3,2.19,9.429948e-01,BP
+GO:0046513,ceramide biosynthetic process,13,1,0.61,9.454213e-01,BP
+GO:0006075,(1->3)-beta-D-glucan biosynthetic process,14,1,0.65,9.457190e-01,BP
+GO:0006367,transcription initiation at RNA polymerase II promoter,27,1,1.26,9.457259e-01,BP
+GO:0036211,protein modification process,1058,51,49.24,9.460356e-01,BP
+GO:0006979,response to oxidative stress,176,5,8.19,9.470175e-01,BP
+GO:0097720,calcineurin-mediated signaling,31,2,1.44,9.491094e-01,BP
+GO:0007018,microtubule-based movement,35,2,1.63,9.498007e-01,BP
+GO:0009987,cellular process,5114,218,238.02,9.550538e-01,BP
+GO:0006383,transcription by RNA polymerase III,15,1,0.70,9.554984e-01,BP
+GO:0006289,nucleotide-excision repair,28,1,1.30,9.563355e-01,BP
+GO:0043412,macromolecule modification,1121,54,52.18,9.564700e-01,BP
+GO:0006401,RNA catabolic process,16,1,0.74,9.579663e-01,BP
+GO:0022402,cell cycle process,68,4,3.16,9.599295e-01,BP
+GO:0050789,regulation of biological process,22,1,1.02,9.601067e-01,BP
+GO:0019722,calcium-mediated signaling,33,2,1.54,9.603100e-01,BP
+GO:0051301,cell division,127,7,5.91,9.604238e-01,BP
+GO:0000278,mitotic cell cycle,14,1,0.65,9.609337e-01,BP
+GO:0045944,positive regulation of transcription by RNA polymerase II,17,1,0.79,9.614568e-01,BP
+GO:0065007,biological regulation,23,1,1.07,9.642739e-01,BP
+GO:0045184,establishment of protein localization,245,11,11.40,9.647531e-01,BP
+GO:0009435,NAD+ biosynthetic process,16,1,0.74,9.648064e-01,BP
+GO:0016126,sterol biosynthetic process,23,1,1.07,9.657183e-01,BP
+GO:0032196,transposition,26,1,1.21,9.669257e-01,BP
+GO:0000105,L-histidine biosynthetic process,17,1,0.79,9.670744e-01,BP
+GO:0000398,"mRNA splicing, via spliceosome",90,4,4.19,9.688650e-01,BP
+GO:0000377,"RNA splicing, via transesterification reactions with bulged adenosine as nucleophile",90,4,4.19,9.688650e-01,BP
+GO:0000375,"RNA splicing, via transesterification reactions",90,4,4.19,9.688650e-01,BP
+GO:0019346,transsulfuration,21,1,0.98,9.720723e-01,BP
+GO:0008033,tRNA processing,69,3,3.21,9.727646e-01,BP
+GO:0055086,nucleobase-containing small molecule metabolic process,16,1,0.74,9.731296e-01,BP
+GO:0016226,iron-sulfur cluster assembly,20,1,0.93,9.737416e-01,BP
+GO:0006352,DNA-templated transcription initiation,54,2,2.51,9.752415e-01,BP
+GO:0008380,RNA splicing,124,5,5.77,9.816191e-01,BP
+GO:0006915,apoptotic process,51,1,2.37,9.818052e-01,BP
+GO:0012501,programmed cell death,51,1,2.37,9.818052e-01,BP
+GO:0008219,cell death,51,1,2.37,9.818052e-01,BP
+GO:0006364,rRNA processing,144,6,6.70,9.834403e-01,BP
+GO:0006783,heme biosynthetic process,21,1,0.98,9.847927e-01,BP
+GO:0015031,protein transport,234,10,10.89,9.852908e-01,BP
+GO:0008104,intracellular protein localization,237,10,11.03,9.868200e-01,BP
+GO:0033554,cellular response to stress,490,15,22.81,9.869184e-01,BP
+GO:0051716,cellular response to stimulus,495,15,23.04,9.871034e-01,BP
+GO:0006950,response to stress,559,18,26.02,9.891731e-01,BP
+GO:0050896,response to stimulus,570,18,26.53,9.894809e-01,BP
+GO:0033036,macromolecule localization,243,10,11.31,9.895824e-01,BP
+GO:0007017,microtubule-based process,88,4,4.10,9.914131e-01,BP
+GO:0006520,amino acid metabolic process,88,1,4.10,9.920849e-01,BP
+GO:0006310,DNA recombination,239,2,11.12,9.921270e-01,BP
+GO:0006629,lipid metabolic process,206,5,9.59,9.927311e-01,BP
+GO:0043386,mycotoxin biosynthetic process,41,1,1.91,9.929766e-01,BP
+GO:0009403,toxin biosynthetic process,41,1,1.91,9.929766e-01,BP
+GO:0043385,mycotoxin metabolic process,41,1,1.91,9.929766e-01,BP
+GO:0009404,toxin metabolic process,41,1,1.91,9.929766e-01,BP
+GO:0006281,DNA repair,310,9,14.43,9.945887e-01,BP
+GO:0010608,post-transcriptional regulation of gene expression,28,1,1.30,9.949158e-01,BP
+GO:0006974,DNA damage response,342,9,15.92,9.953548e-01,BP
+GO:0006468,protein phosphorylation,753,33,35.05,9.972039e-01,BP
+GO:0008152,metabolic process,3718,155,173.05,9.972326e-01,BP
+GO:0006996,organelle organization,45,1,2.09,9.973169e-01,BP
+GO:0032774,RNA biosynthetic process,77,2,3.58,9.973758e-01,BP
+GO:0007049,cell cycle,46,1,2.14,9.975365e-01,BP
+GO:0006508,proteolysis,787,27,36.63,9.975930e-01,BP
+GO:0019538,protein metabolic process,1825,77,84.94,9.977301e-01,BP
+GO:0006259,DNA metabolic process,628,13,29.23,9.985802e-01,BP
+GO:0007059,chromosome segregation,22,1,1.02,9.987650e-01,BP
+GO:0006302,double-strand break repair,26,1,1.21,9.989147e-01,BP
+GO:0044238,primary metabolic process,2982,123,138.79,9.990719e-01,BP
+GO:0016042,lipid catabolic process,40,1,1.86,9.997945e-01,BP
+GO:0032447,protein urmylation,5,0,0.23,1.000000e+00,BP
+GO:0016925,protein sumoylation,9,0,0.42,1.000000e+00,BP
+GO:0070143,mitochondrial alanyl-tRNA aminoacylation,5,0,0.23,1.000000e+00,BP
+GO:0016567,protein ubiquitination,12,0,0.56,1.000000e+00,BP
+GO:0006635,fatty acid beta-oxidation,17,0,0.79,1.000000e+00,BP
+GO:0017183,protein histidyl modification to diphthamide,6,0,0.28,1.000000e+00,BP
+GO:0070127,tRNA aminoacylation for mitochondrial protein translation,5,0,0.23,1.000000e+00,BP
+GO:0006474,N-terminal protein amino acid acetylation,7,0,0.33,1.000000e+00,BP
+GO:0018022,peptidyl-lysine methylation,9,0,0.42,1.000000e+00,BP
+GO:0006426,glycyl-tRNA aminoacylation,6,0,0.28,1.000000e+00,BP
+GO:0009249,protein lipoylation,8,0,0.37,1.000000e+00,BP
+GO:0032446,protein modification by small protein conjugation,28,0,1.30,1.000000e+00,BP
+GO:0000413,protein peptidyl-prolyl isomerization,26,0,1.21,1.000000e+00,BP
+GO:0018216,peptidyl-arginine methylation,5,0,0.23,1.000000e+00,BP
+GO:0019395,fatty acid oxidation,17,0,0.79,1.000000e+00,BP
+GO:0006473,protein acetylation,7,0,0.33,1.000000e+00,BP
+GO:0046656,folic acid biosynthetic process,8,0,0.37,1.000000e+00,BP
+GO:0006479,protein methylation,28,0,1.30,1.000000e+00,BP
+GO:0006536,glutamate metabolic process,7,0,0.33,1.000000e+00,BP
+GO:0018208,peptidyl-proline modification,26,0,1.21,1.000000e+00,BP
+GO:0006303,double-strand break repair via nonhomologous end joining,7,0,0.33,1.000000e+00,BP
+GO:0006388,"tRNA splicing, via endonucleolytic cleavage and ligation",11,0,0.51,1.000000e+00,BP
+GO:0018205,peptidyl-lysine modification,29,0,1.35,1.000000e+00,BP
+GO:0019646,aerobic electron transport chain,11,0,0.51,1.000000e+00,BP
+GO:0046856,phosphatidylinositol dephosphorylation,10,0,0.47,1.000000e+00,BP
+GO:0045040,protein insertion into mitochondrial outer membrane,9,0,0.42,1.000000e+00,BP
+GO:0018202,peptidyl-histidine modification,6,0,0.28,1.000000e+00,BP
+GO:0018195,peptidyl-arginine modification,5,0,0.23,1.000000e+00,BP
+GO:0006418,tRNA aminoacylation for protein translation,54,0,2.51,1.000000e+00,BP
+GO:0007232,osmosensory signaling pathway via Sho1 osmosensor,5,0,0.23,1.000000e+00,BP
+GO:0070987,error-free translesion synthesis,5,0,0.23,1.000000e+00,BP
+GO:0000724,double-strand break repair via homologous recombination,8,0,0.37,1.000000e+00,BP
+GO:0016540,protein autoprocessing,7,0,0.33,1.000000e+00,BP
+GO:0000467,"exonucleolytic trimming to generate mature 3'-end of 5.8S rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)",5,0,0.23,1.000000e+00,BP
+GO:0046839,phospholipid dephosphorylation,10,0,0.47,1.000000e+00,BP
+GO:0006887,exocytosis,10,0,0.47,1.000000e+00,BP
+GO:0009584,detection of visible light,5,0,0.23,1.000000e+00,BP
+GO:0006284,base-excision repair,12,0,0.56,1.000000e+00,BP
+GO:0019985,translesion synthesis,6,0,0.28,1.000000e+00,BP
+GO:0051382,kinetochore assembly,5,0,0.23,1.000000e+00,BP
+GO:0000725,recombinational repair,8,0,0.37,1.000000e+00,BP
+GO:0000045,autophagosome assembly,8,0,0.37,1.000000e+00,BP
+GO:0031124,mRNA 3'-end processing,8,0,0.37,1.000000e+00,BP
+GO:0031125,rRNA 3'-end processing,5,0,0.23,1.000000e+00,BP
+GO:0009060,aerobic respiration,14,0,0.65,1.000000e+00,BP
+GO:0000394,"RNA splicing, via endonucleolytic cleavage and ligation",11,0,0.51,1.000000e+00,BP
+GO:0043648,dicarboxylic acid metabolic process,7,0,0.33,1.000000e+00,BP
+GO:0034440,lipid oxidation,17,0,0.79,1.000000e+00,BP
+GO:0043039,tRNA aminoacylation,59,0,2.75,1.000000e+00,BP
+GO:0008213,protein alkylation,28,0,1.30,1.000000e+00,BP
+GO:0007231,osmosensory signaling pathway,5,0,0.23,1.000000e+00,BP
+GO:0018193,peptidyl-amino acid modification,69,0,3.21,1.000000e+00,BP
+GO:0043543,protein acylation,10,0,0.47,1.000000e+00,BP
+GO:0018342,protein prenylation,7,0,0.33,1.000000e+00,BP
+GO:0031365,N-terminal protein amino acid modification,12,0,0.56,1.000000e+00,BP
+GO:0007008,outer mitochondrial membrane organization,11,0,0.51,1.000000e+00,BP
+GO:0000077,DNA damage checkpoint signaling,10,0,0.47,1.000000e+00,BP
+GO:0042770,signal transduction in response to DNA damage,10,0,0.47,1.000000e+00,BP
+GO:0006301,DNA damage tolerance,7,0,0.33,1.000000e+00,BP
+GO:0072583,clathrin-dependent endocytosis,8,0,0.37,1.000000e+00,BP
+GO:0070925,organelle assembly,18,0,0.84,1.000000e+00,BP
+GO:0022904,respiratory electron transport chain,13,0,0.61,1.000000e+00,BP
+GO:0042273,ribosomal large subunit biogenesis,5,0,0.23,1.000000e+00,BP
+GO:0031123,RNA 3'-end processing,18,0,0.84,1.000000e+00,BP
+GO:0042254,ribosome biogenesis,24,0,1.12,1.000000e+00,BP
+GO:0043038,amino acid activation,59,0,2.75,1.000000e+00,BP
+GO:0035999,tetrahydrofolate interconversion,6,0,0.28,1.000000e+00,BP
+GO:0019752,carboxylic acid metabolic process,31,0,1.44,1.000000e+00,BP
+GO:0000422,autophagy of mitochondrion,6,0,0.28,1.000000e+00,BP
+GO:0030258,lipid modification,27,0,1.26,1.000000e+00,BP
+GO:0071470,cellular response to osmotic stress,5,0,0.23,1.000000e+00,BP
+GO:0009583,detection of light stimulus,5,0,0.23,1.000000e+00,BP
+GO:0045333,cellular respiration,15,0,0.70,1.000000e+00,BP
+GO:0002098,tRNA wobble uridine modification,15,0,0.70,1.000000e+00,BP
+GO:0032940,secretion by cell,10,0,0.47,1.000000e+00,BP
+GO:0046903,secretion,10,0,0.47,1.000000e+00,BP
+GO:0032507,maintenance of protein location in cell,5,0,0.23,1.000000e+00,BP
+GO:0002097,tRNA wobble base modification,20,0,0.93,1.000000e+00,BP
+GO:0022607,cellular component assembly,18,0,0.84,1.000000e+00,BP
+GO:0015980,energy derivation by oxidation of organic compounds,18,0,0.84,1.000000e+00,BP
+GO:0006396,RNA processing,192,6,8.94,1.000000e+00,BP
+GO:1990456,mitochondrion-endoplasmic reticulum membrane tethering,5,0,0.23,1.000000e+00,BP
+GO:0042545,cell wall modification,18,0,0.84,1.000000e+00,BP
+GO:0006099,tricarboxylic acid cycle,32,0,1.49,1.000000e+00,BP
+GO:0034227,tRNA thio-modification,5,0,0.23,1.000000e+00,BP
+GO:0006139,nucleobase-containing compound metabolic process,31,1,1.44,1.000000e+00,BP
+GO:0009408,response to heat,8,0,0.37,1.000000e+00,BP
+GO:0007131,reciprocal meiotic recombination,8,0,0.37,1.000000e+00,BP
+GO:0043436,oxoacid metabolic process,31,0,1.44,1.000000e+00,BP
+GO:0006730,one-carbon metabolic process,18,0,0.84,1.000000e+00,BP
+GO:0022900,electron transport chain,25,0,1.16,1.000000e+00,BP
+GO:0006096,glycolytic process,37,0,1.72,1.000000e+00,BP
+GO:0031507,heterochromatin formation,5,0,0.23,1.000000e+00,BP
+GO:0031505,fungal-type cell wall organization,10,0,0.47,1.000000e+00,BP
+GO:0071214,cellular response to abiotic stimulus,8,0,0.37,1.000000e+00,BP
+GO:0006898,receptor-mediated endocytosis,8,0,0.37,1.000000e+00,BP
+GO:0009416,response to light stimulus,8,0,0.37,1.000000e+00,BP
+GO:0022613,ribonucleoprotein complex biogenesis,33,0,1.54,1.000000e+00,BP
+GO:0000387,spliceosomal snRNP assembly,16,0,0.74,1.000000e+00,BP
+GO:0006091,generation of precursor metabolites and energy,72,0,3.35,1.000000e+00,BP
+GO:0042147,"retrograde transport, endosome to Golgi",14,0,0.65,1.000000e+00,BP
+GO:0000289,nuclear-transcribed mRNA poly(A) tail shortening,14,0,0.65,1.000000e+00,BP
+GO:0042026,protein refolding,7,0,0.33,1.000000e+00,BP
+GO:0030041,actin filament polymerization,5,0,0.23,1.000000e+00,BP
+GO:0032259,methylation,371,16,17.27,1.000000e+00,BP
+GO:0071555,cell wall organization,135,2,6.28,1.000000e+00,BP
+GO:0030952,establishment or maintenance of cytoskeleton polarity,5,0,0.23,1.000000e+00,BP
+GO:0009581,detection of external stimulus,5,0,0.23,1.000000e+00,BP
+GO:0009582,detection of abiotic stimulus,5,0,0.23,1.000000e+00,BP
+GO:0006970,response to osmotic stress,5,0,0.23,1.000000e+00,BP
+GO:0035194,regulatory ncRNA-mediated post-transcriptional gene silencing,7,0,0.33,1.000000e+00,BP
+GO:0000290,deadenylation-dependent decapping of nuclear-transcribed mRNA,7,0,0.33,1.000000e+00,BP
+GO:0000154,rRNA modification,6,0,0.28,1.000000e+00,BP
+GO:0044085,cellular component biogenesis,33,0,1.54,1.000000e+00,BP
+GO:0006400,tRNA modification,32,1,1.49,1.000000e+00,BP
+GO:0007266,Rho protein signal transduction,5,0,0.23,1.000000e+00,BP
+GO:0097354,prenylation,7,0,0.33,1.000000e+00,BP
+GO:0070897,transcription preinitiation complex assembly,5,0,0.23,1.000000e+00,BP
+GO:0140527,reciprocal homologous recombination,8,0,0.37,1.000000e+00,BP
+GO:0098813,nuclear chromosome segregation,5,0,0.23,1.000000e+00,BP
+GO:0051651,maintenance of location in cell,5,0,0.23,1.000000e+00,BP
+GO:0043488,regulation of mRNA stability,6,0,0.28,1.000000e+00,BP
+GO:0006334,nucleosome assembly,14,0,0.65,1.000000e+00,BP
+GO:0006313,DNA transposition,10,0,0.47,1.000000e+00,BP
+GO:0000184,"nuclear-transcribed mRNA catabolic process, nonsense-mediated decay",11,0,0.51,1.000000e+00,BP
+GO:0001522,pseudouridine synthesis,24,0,1.12,1.000000e+00,BP
+GO:0001732,formation of cytoplasmic translation initiation complex,22,0,1.02,1.000000e+00,BP
+GO:0009314,response to radiation,8,0,0.37,1.000000e+00,BP
+GO:0031145,anaphase-promoting complex-dependent catabolic process,8,0,0.37,1.000000e+00,BP
+GO:0009266,response to temperature stimulus,8,0,0.37,1.000000e+00,BP
+GO:0104004,cellular response to environmental stimulus,8,0,0.37,1.000000e+00,BP
+GO:0045814,"negative regulation of gene expression, epigenetic",5,0,0.23,1.000000e+00,BP
+GO:0043487,regulation of RNA stability,6,0,0.28,1.000000e+00,BP
+GO:0110156,mRNA methylguanosine-cap decapping,10,0,0.47,1.000000e+00,BP
+GO:0140352,export from cell,10,0,0.47,1.000000e+00,BP
+GO:0016441,post-transcriptional gene silencing,7,0,0.33,1.000000e+00,BP
+GO:0040029,epigenetic regulation of gene expression,5,0,0.23,1.000000e+00,BP
+GO:0031122,cytoplasmic microtubule organization,6,0,0.28,1.000000e+00,BP
+GO:0006895,Golgi to endosome transport,5,0,0.23,1.000000e+00,BP
+GO:0071554,cell wall organization or biogenesis,154,5,7.17,1.000000e+00,BP
+GO:0007020,microtubule nucleation,14,0,0.65,1.000000e+00,BP
+GO:0000723,telomere maintenance,100,0,4.65,1.000000e+00,BP
+GO:0051606,detection of stimulus,5,0,0.23,1.000000e+00,BP
+GO:0006384,transcription initiation at RNA polymerase III promoter,12,0,0.56,1.000000e+00,BP
+GO:0007064,mitotic sister chromatid cohesion,10,0,0.47,1.000000e+00,BP
+GO:0034314,Arp2/3 complex-mediated actin nucleation,10,0,0.47,1.000000e+00,BP
+GO:0000956,nuclear-transcribed mRNA catabolic process,39,0,1.82,1.000000e+00,BP
+GO:0000466,"maturation of 5.8S rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)",6,0,0.28,1.000000e+00,BP
+GO:0008608,attachment of spindle microtubules to kinetochore,11,0,0.51,1.000000e+00,BP
+GO:0000463,"maturation of LSU-rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)",8,0,0.37,1.000000e+00,BP
+GO:0034728,nucleosome organization,14,0,0.65,1.000000e+00,BP
+GO:0007051,spindle organization,5,0,0.23,1.000000e+00,BP
+GO:0030150,protein import into mitochondrial matrix,8,0,0.37,1.000000e+00,BP
+GO:0009628,response to abiotic stimulus,22,0,1.02,1.000000e+00,BP
+GO:0006368,transcription elongation by RNA polymerase II,16,0,0.74,1.000000e+00,BP
+GO:0009451,RNA modification,60,1,2.79,1.000000e+00,BP
+GO:0000462,"maturation of SSU-rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)",12,0,0.56,1.000000e+00,BP
+GO:0006265,DNA topological change,7,0,0.33,1.000000e+00,BP
+GO:0035825,homologous recombination,8,0,0.37,1.000000e+00,BP
+GO:0051235,maintenance of location,5,0,0.23,1.000000e+00,BP
+GO:0065004,protein-DNA complex assembly,6,0,0.28,1.000000e+00,BP
+GO:0051258,protein polymerization,9,0,0.42,1.000000e+00,BP
+GO:0070096,mitochondrial outer membrane translocase complex assembly,5,0,0.23,1.000000e+00,BP
+GO:0009605,response to external stimulus,5,0,0.23,1.000000e+00,BP
+GO:0022618,protein-RNA complex assembly,47,0,2.19,1.000000e+00,BP
+GO:0006354,DNA-templated transcription elongation,16,0,0.74,1.000000e+00,BP
+GO:0032200,telomere organization,100,0,4.65,1.000000e+00,BP
+GO:7770058,mitochondrial protein import pathway,12,0,0.56,1.000000e+00,BP
+GO:0051383,kinetochore organization,5,0,0.23,1.000000e+00,BP
+GO:0006338,chromatin remodeling,42,1,1.95,1.000000e+00,BP
+GO:0006006,glucose metabolic process,5,0,0.23,1.000000e+00,BP
+GO:0007062,sister chromatid cohesion,14,0,0.65,1.000000e+00,BP
+GO:0006890,"retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum",19,0,0.88,1.000000e+00,BP
+GO:0006402,mRNA catabolic process,41,0,1.91,1.000000e+00,BP
+GO:0010646,regulation of cell communication,6,0,0.28,1.000000e+00,BP
+GO:0006891,intra-Golgi vesicle-mediated transport,7,0,0.33,1.000000e+00,BP
+GO:0044205,'de novo' UMP biosynthetic process,13,0,0.61,1.000000e+00,BP
+GO:0031570,DNA integrity checkpoint signaling,11,0,0.51,1.000000e+00,BP
+GO:0006913,nucleocytoplasmic transport,10,0,0.47,1.000000e+00,BP
+GO:0110154,RNA decapping,10,0,0.47,1.000000e+00,BP
+GO:0000226,microtubule cytoskeleton organization,27,1,1.26,1.000000e+00,BP
+GO:0034553,mitochondrial respiratory chain complex II assembly,6,0,0.28,1.000000e+00,BP
+GO:0030490,maturation of SSU-rRNA,14,0,0.65,1.000000e+00,BP
+GO:0006285,"base-excision repair, AP site formation",7,0,0.33,1.000000e+00,BP
+GO:0000103,sulfate assimilation,6,0,0.28,1.000000e+00,BP
+GO:0065003,protein-containing complex assembly,109,3,5.07,1.000000e+00,BP
+GO:0000160,phosphorelay signal transduction system,25,0,1.16,1.000000e+00,BP
+GO:0006270,DNA replication initiation,17,0,0.79,1.000000e+00,BP
+GO:0031929,TOR signaling,9,0,0.42,1.000000e+00,BP
+GO:0006353,DNA-templated transcription termination,12,0,0.56,1.000000e+00,BP
+GO:0015074,DNA integration,210,3,9.77,1.000000e+00,BP
+GO:0009088,L-threonine biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0008154,actin polymerization or depolymerization,6,0,0.28,1.000000e+00,BP
+GO:0006355,regulation of DNA-templated transcription,176,6,8.19,1.000000e+00,BP
+GO:0045454,cell redox homeostasis,9,0,0.42,1.000000e+00,BP
+GO:0000460,maturation of 5.8S rRNA,6,0,0.28,1.000000e+00,BP
+GO:0001682,tRNA 5'-leader removal,6,0,0.28,1.000000e+00,BP
+GO:0019184,nonribosomal peptide biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0006888,endoplasmic reticulum to Golgi vesicle-mediated transport,41,0,1.91,1.000000e+00,BP
+GO:0032981,mitochondrial respiratory chain complex I assembly,7,0,0.33,1.000000e+00,BP
+GO:0031047,regulatory ncRNA-mediated gene silencing,38,1,1.77,1.000000e+00,BP
+GO:0006366,transcription by RNA polymerase II,20,0,0.93,1.000000e+00,BP
+GO:0006207,'de novo' pyrimidine nucleobase biosynthetic process,6,0,0.28,1.000000e+00,BP
+GO:0045010,actin nucleation,10,0,0.47,1.000000e+00,BP
+GO:0006526,L-arginine biosynthetic process,8,0,0.37,1.000000e+00,BP
+GO:0006892,post-Golgi vesicle-mediated transport,10,0,0.47,1.000000e+00,BP
+GO:0000470,maturation of LSU-rRNA,8,0,0.37,1.000000e+00,BP
+GO:0071103,DNA conformation change,8,0,0.37,1.000000e+00,BP
+GO:0046355,mannan catabolic process,18,0,0.84,1.000000e+00,BP
+GO:0009085,L-lysine biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0009168,purine ribonucleoside monophosphate biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0043043,peptide biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0030245,cellulose catabolic process,46,1,2.14,1.000000e+00,BP
+GO:1990544,mitochondrial ATP transmembrane transport,5,0,0.23,1.000000e+00,BP
+GO:0000272,polysaccharide catabolic process,184,5,8.56,1.000000e+00,BP
+GO:0051169,nuclear transport,10,0,0.47,1.000000e+00,BP
+GO:0009165,nucleotide biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0006222,UMP biosynthetic process,13,0,0.61,1.000000e+00,BP
+GO:0006631,fatty acid metabolic process,49,0,2.28,1.000000e+00,BP
+GO:0099116,tRNA 5'-end processing,6,0,0.28,1.000000e+00,BP
+GO:0042853,L-alanine catabolic process,8,0,0.37,1.000000e+00,BP
+GO:0006031,chitin biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0009423,chorismate biosynthetic process,7,0,0.33,1.000000e+00,BP
+GO:0032543,mitochondrial translation,9,0,0.42,1.000000e+00,BP
+GO:0006665,sphingolipid metabolic process,20,0,0.93,1.000000e+00,BP
+GO:0006685,sphingomyelin catabolic process,11,0,0.51,1.000000e+00,BP
+GO:0006636,unsaturated fatty acid biosynthetic process,7,0,0.33,1.000000e+00,BP
+GO:0071897,DNA biosynthetic process,10,0,0.47,1.000000e+00,BP
+GO:0009099,L-valine biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0009395,phospholipid catabolic process,9,0,0.42,1.000000e+00,BP
+GO:0023051,regulation of signaling,6,0,0.28,1.000000e+00,BP
+GO:0016559,peroxisome fission,6,0,0.28,1.000000e+00,BP
+GO:0000245,spliceosomal complex assembly,9,0,0.42,1.000000e+00,BP
+GO:0008652,amino acid biosynthetic process,29,0,1.35,1.000000e+00,BP
+GO:0006098,pentose-phosphate shunt,10,0,0.47,1.000000e+00,BP
+GO:0006839,mitochondrial transport,15,0,0.70,1.000000e+00,BP
+GO:0009820,alkaloid metabolic process,21,0,0.98,1.000000e+00,BP
+GO:0006826,iron ion transport,28,0,1.30,1.000000e+00,BP
+GO:0009082,branched-chain amino acid biosynthetic process,14,0,0.65,1.000000e+00,BP
+GO:0140021,mitochondrial ADP transmembrane transport,5,0,0.23,1.000000e+00,BP
+GO:0071826,protein-RNA complex organization,48,0,2.23,1.000000e+00,BP
+GO:0019318,hexose metabolic process,5,0,0.23,1.000000e+00,BP
+GO:0006147,guanine catabolic process,6,0,0.28,1.000000e+00,BP
+GO:0009190,cyclic nucleotide biosynthetic process,12,0,0.56,1.000000e+00,BP
+GO:0006412,translation,220,4,10.24,1.000000e+00,BP
+GO:0000162,L-tryptophan biosynthetic process,6,0,0.28,1.000000e+00,BP
+GO:0010468,regulation of gene expression,228,7,10.61,1.000000e+00,BP
+GO:0006777,Mo-molybdopterin cofactor biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0009067,aspartate family amino acid biosynthetic process,10,0,0.47,1.000000e+00,BP
+GO:0006772,thiamine metabolic process,5,0,0.23,1.000000e+00,BP
+GO:0006559,L-phenylalanine catabolic process,8,0,0.37,1.000000e+00,BP
+GO:0006233,dTDP biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0006646,phosphatidylethanolamine biosynthetic process,8,0,0.37,1.000000e+00,BP
+GO:0006829,zinc ion transport,5,0,0.23,1.000000e+00,BP
+GO:0046514,ceramide catabolic process,5,0,0.23,1.000000e+00,BP
+GO:0046488,phosphatidylinositol metabolic process,10,0,0.47,1.000000e+00,BP
+GO:0019725,cellular homeostasis,10,0,0.47,1.000000e+00,BP
+GO:0035556,intracellular signal transduction,223,9,10.38,1.000000e+00,BP
+GO:0007094,mitotic spindle assembly checkpoint signaling,5,0,0.23,1.000000e+00,BP
+GO:0016070,RNA metabolic process,80,2,3.72,1.000000e+00,BP
+GO:0006084,acetyl-CoA metabolic process,5,0,0.23,1.000000e+00,BP
+GO:0007010,cytoskeleton organization,7,0,0.33,1.000000e+00,BP
+GO:0016052,carbohydrate catabolic process,5,0,0.23,1.000000e+00,BP
+GO:0030071,regulation of mitotic metaphase/anaphase transition,5,0,0.23,1.000000e+00,BP
+GO:0006351,DNA-templated transcription,235,4,10.94,1.000000e+00,BP
+GO:0006744,ubiquinone biosynthetic process,22,0,1.02,1.000000e+00,BP
+GO:0007031,peroxisome organization,6,0,0.28,1.000000e+00,BP
+GO:1990961,xenobiotic detoxification by transmembrane export across the plasma membrane,6,0,0.28,1.000000e+00,BP
+GO:0006886,intracellular protein transport,146,5,6.80,1.000000e+00,BP
+GO:0048193,Golgi vesicle transport,79,0,3.68,1.000000e+00,BP
+GO:0032366,intracellular sterol transport,6,0,0.28,1.000000e+00,BP
+GO:0006094,gluconeogenesis,7,0,0.33,1.000000e+00,BP
+GO:0043086,negative regulation of catalytic activity,7,0,0.33,1.000000e+00,BP
+GO:0031222,arabinan catabolic process,20,0,0.93,1.000000e+00,BP
+GO:0009156,ribonucleoside monophosphate biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0046653,tetrahydrofolate metabolic process,6,0,0.28,1.000000e+00,BP
+GO:0007186,G protein-coupled receptor signaling pathway,80,2,3.72,1.000000e+00,BP
+GO:0046486,glycerolipid metabolic process,11,0,0.51,1.000000e+00,BP
+GO:0009229,thiamine diphosphate biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0015937,coenzyme A biosynthetic process,12,0,0.56,1.000000e+00,BP
+GO:0006325,chromatin organization,90,2,4.19,1.000000e+00,BP
+GO:0071562,nucleus-vacuole junction assembly,10,0,0.47,1.000000e+00,BP
+GO:0045490,pectin catabolic process,59,0,2.75,1.000000e+00,BP
+GO:0016998,cell wall macromolecule catabolic process,23,0,1.07,1.000000e+00,BP
+GO:0007015,actin filament organization,27,0,1.26,1.000000e+00,BP
+GO:0051276,chromosome organization,133,0,6.19,1.000000e+00,BP
+GO:0006081,aldehyde metabolic process,9,0,0.42,1.000000e+00,BP
+GO:0001678,intracellular glucose homeostasis,10,0,0.47,1.000000e+00,BP
+GO:0071824,protein-DNA complex organization,6,0,0.28,1.000000e+00,BP
+GO:0006086,pyruvate decarboxylation to acetyl-CoA,8,0,0.37,1.000000e+00,BP
+GO:0006399,tRNA metabolic process,59,0,2.75,1.000000e+00,BP
+GO:0006751,glutathione catabolic process,5,0,0.23,1.000000e+00,BP
+GO:0006801,superoxide metabolic process,13,0,0.61,1.000000e+00,BP
+GO:0006862,nucleotide transport,5,0,0.23,1.000000e+00,BP
+GO:0000075,cell cycle checkpoint signaling,11,0,0.51,1.000000e+00,BP
+GO:0006488,dolichol-linked oligosaccharide biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0006032,chitin catabolic process,87,3,4.05,1.000000e+00,BP
+GO:0006271,DNA strand elongation involved in DNA replication,13,0,0.61,1.000000e+00,BP
+GO:0046854,phosphatidylinositol phosphate biosynthetic process,8,0,0.37,1.000000e+00,BP
+GO:0006007,glucose catabolic process,10,0,0.47,1.000000e+00,BP
+GO:0009166,nucleotide catabolic process,9,0,0.42,1.000000e+00,BP
+GO:0006166,purine ribonucleoside salvage,10,0,0.47,1.000000e+00,BP
+GO:0043933,protein-containing complex organization,111,3,5.17,1.000000e+00,BP
+GO:0006541,L-glutamine metabolic process,67,0,3.12,1.000000e+00,BP
+GO:0042744,hydrogen peroxide catabolic process,12,0,0.56,1.000000e+00,BP
+GO:0019856,pyrimidine nucleobase biosynthetic process,7,0,0.33,1.000000e+00,BP
+GO:0008299,isoprenoid biosynthetic process,49,0,2.28,1.000000e+00,BP
+GO:0000055,ribosomal large subunit export from nucleus,6,0,0.28,1.000000e+00,BP
+GO:0046274,lignin catabolic process,11,0,0.51,1.000000e+00,BP
+GO:0046654,tetrahydrofolate biosynthetic process,8,0,0.37,1.000000e+00,BP
+GO:0046373,L-arabinose metabolic process,29,0,1.35,1.000000e+00,BP
+GO:0006790,sulfur compound metabolic process,7,0,0.33,1.000000e+00,BP
+GO:0009098,L-leucine biosynthetic process,13,0,0.61,1.000000e+00,BP
+GO:0045493,xylan catabolic process,60,0,2.79,1.000000e+00,BP
+GO:0009063,amino acid catabolic process,7,0,0.33,1.000000e+00,BP
+GO:0010629,negative regulation of gene expression,83,1,3.86,1.000000e+00,BP
+GO:0032968,positive regulation of transcription elongation by RNA polymerase II,6,0,0.28,1.000000e+00,BP
+GO:0046416,D-amino acid metabolic process,19,0,0.88,1.000000e+00,BP
+GO:0033108,mitochondrial respiratory chain complex assembly,14,0,0.65,1.000000e+00,BP
+GO:0006177,GMP biosynthetic process,5,0,0.23,1.000000e+00,BP
+GO:0042176,regulation of protein catabolic process,13,0,0.61,1.000000e+00,BP
+GO:0030833,regulation of actin filament polymerization,7,0,0.33,1.000000e+00,BP
+GO:0051726,regulation of cell cycle,5,0,0.23,1.000000e+00,BP
+GO:0009062,fatty acid catabolic process,18,0,0.84,1.000000e+00,BP
+GO:0009253,peptidoglycan catabolic process,5,0,0.23,1.000000e+00,BP
+GO:0006633,fatty acid biosynthetic process,84,1,3.91,1.000000e+00,BP
+GO:0006015,5-phosphoribose 1-diphosphate biosynthetic process,9,0,0.42,1.000000e+00,BP
+GO:0007076,mitotic chromosome condensation,8,0,0.37,1.000000e+00,BP
+GO:0006171,cAMP biosynthetic process,14,0,0.65,1.000000e+00,BP
