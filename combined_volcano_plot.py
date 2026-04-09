@@ -58,6 +58,7 @@ LABEL_COLORS = [
 
 SIG_COLOR = "#E74C3C"       # red for significant
 NONSIG_COLOR = "#3498DB"    # blue for not significant
+TOP_GENES_PER_DIRECTION = 2  # number of top genes to label per direction per group
 
 
 # ── Read all data ──────────────────────────────────────────────────────────
@@ -159,8 +160,8 @@ for i, grp in enumerate(group_order):
     if grp_data.empty:
         continue
     # Top 2 upregulated + top 2 downregulated by |Log2FC|
-    up = grp_data[grp_data["Log2FC"] > band_height].nlargest(2, "Log2FC")
-    down = grp_data[grp_data["Log2FC"] < -band_height].nsmallest(2, "Log2FC")
+    up = grp_data[grp_data["Log2FC"] > band_height].nlargest(TOP_GENES_PER_DIRECTION, "Log2FC")
+    down = grp_data[grp_data["Log2FC"] < -band_height].nsmallest(TOP_GENES_PER_DIRECTION, "Log2FC")
     top_genes = pd.concat([up, down])
     for _, row in top_genes.iterrows():
         t = ax.annotate(
@@ -189,13 +190,17 @@ ax.set_xticks(range(n_groups))
 ax.set_xticklabels([""] * n_groups)
 
 # Add "Non-symbiotic (M)" and "Symbiotic (MS)" header labels
+n_m = len(m_files)
+n_ms = len(ms_files)
+m_center = (n_m - 1) / 2
+ms_center = n_m + (n_ms - 1) / 2
 ax.text(
-    2, -y_abs_max * 1.08,
+    m_center, -y_abs_max * 1.08,
     "Non-symbiotic (M)",
     ha="center", va="top", fontsize=12, fontweight="bold", color="#555",
 )
 ax.text(
-    7, -y_abs_max * 1.08,
+    ms_center, -y_abs_max * 1.08,
     "Symbiotic (MS)",
     ha="center", va="top", fontsize=12, fontweight="bold", color="#555",
 )
