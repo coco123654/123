@@ -265,7 +265,7 @@ if n_genes > 2:
         above_threshold_color="#333333",
     )
 
-ax_dendro.set_xlim(ax_dendro.get_xlim()[::-1])  # flip x so root is on right
+    ax_dendro.set_xlim(ax_dendro.get_xlim()[::-1])  # flip x so root is on right
 ax_dendro.axis("off")
 
 # ── Gap column ──
@@ -311,7 +311,6 @@ fig.text(0.55, 0.02, "(Day)", ha="center", fontsize=10)
 cbar_ax = fig.add_axes([0.92, 0.25, 0.02, 0.5])
 cbar = fig.colorbar(im_sym, cax=cbar_ax, orientation="vertical")
 cbar.ax.tick_params(labelsize=8, length=2, pad=2)
-tick_vals = np.linspace(vmin_val, vmax_val, 7)
 cbar.set_ticks([vmin_val, 0, vmax_val])
 cbar.set_ticklabels([f"{vmin_val:.0f}", "0", f"{vmax_val:.0f}"])
 cbar_ax.set_ylabel("Log$_2$FC", fontsize=9, rotation=270, labelpad=12)
