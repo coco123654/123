@@ -62,7 +62,9 @@ TIME_LABELS = {
     "MS10": "10", "MS20": "20", "MS30": "30", "MS40": "40", "MS50": "50",
 }
 
-NONSIG_COLOR = "#CCCCCC"  # grey for non-significant
+NONSIG_COLOR = "#CCCCCC"   # grey for non-significant
+UPREG_COLOR = "#E74C3C"    # red for up-regulated annotation
+DOWNREG_COLOR = "#3498DB"  # blue for down-regulated annotation
 
 
 # ── Read all data ──────────────────────────────────────────────────────────
@@ -71,13 +73,20 @@ def read_deg(filename, label):
     path = os.path.join(BASE_DIR, filename)
     df = pd.read_csv(path)
     cols = df.columns.tolist()
-    df = df.rename(columns={
+    # Columns: 0=GeneID, 1=GeneName, 2=GeneDesc, 3=FC, 4=Log2FC,
+    #          5=Pvalue, 6=Padjust, 7=Significant, 8=Regulate
+    col_map = {
         cols[0]: "GeneID",
+        cols[1]: "GeneName",
+        cols[2]: "GeneDesc",
+        cols[3]: "FC",
         cols[4]: "Log2FC",
         cols[5]: "Pvalue",
+        cols[6]: "Padjust",
         cols[7]: "Significant",
         cols[8]: "Regulate",
-    })
+    }
+    df = df.rename(columns=col_map)
     df["Log2FC"] = pd.to_numeric(df["Log2FC"], errors="coerce")
     df["Pvalue"] = pd.to_numeric(df["Pvalue"], errors="coerce")
     df = df.dropna(subset=["Log2FC", "Pvalue"])
@@ -194,13 +203,13 @@ ax.text(
 ax.text(
     -0.55, y_abs_max * 0.65,
     "Up-regulated ↑",
-    ha="left", va="center", fontsize=11, fontweight="bold", color="#E74C3C",
+    ha="left", va="center", fontsize=11, fontweight="bold", color=UPREG_COLOR,
     rotation=90, zorder=8,
 )
 ax.text(
     -0.55, -y_abs_max * 0.65,
     "Down-regulated ↓",
-    ha="left", va="center", fontsize=11, fontweight="bold", color="#3498DB",
+    ha="left", va="center", fontsize=11, fontweight="bold", color=DOWNREG_COLOR,
     rotation=90, zorder=8,
 )
 
