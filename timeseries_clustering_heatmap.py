@@ -33,9 +33,12 @@ warnings.filterwarnings("ignore")
 
 # ── Font configuration (CJK support) ──────────────────────────────────────
 _cjk_font_path = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
-fm.fontManager.addfont(_cjk_font_path)
-_cjk_prop = fm.FontProperties(fname=_cjk_font_path)
-_cjk_family = _cjk_prop.get_name()
+try:
+    fm.fontManager.addfont(_cjk_font_path)
+    _cjk_prop = fm.FontProperties(fname=_cjk_font_path)
+    _cjk_family = _cjk_prop.get_name()
+except Exception:
+    _cjk_family = "sans-serif"
 
 plt.rcParams.update({
     "font.family": _cjk_family,
@@ -93,6 +96,8 @@ sym_mean_cols  = [f"MS{tp}" for tp in time_points]    # MS10 MS20 MS30 MS40 MS50
 common_genes = sorted(all_degs & set(asym_tpm.index) & set(sym_tpm.index))
 print(f"DEGs present in both expression files: {len(common_genes)}")
 
+# Small pseudocount to avoid log2(0); 0.01 chosen to be negligible relative
+# to typical TPM values while preventing -inf in the log2FC calculation.
 pseudocount = 0.01
 
 # Baseline M5 (from the non-symbiotic file; both files share the same M5)
@@ -284,7 +289,7 @@ cmap = LinearSegmentedColormap.from_list(
     N=256,
 )
 
-# Determine vmin/vmax based on data range (clip extreme outliers)
+# Clip at 99th percentile (max ±15) to match the reference figure scale range
 vmax_val = min(15, np.percentile(np.abs(heatmap_matrix), 99))
 vmin_val = -vmax_val
 
