@@ -4,8 +4,8 @@ Combined Multi-group Differential Volcano Plot
 Non-symbiotic (M) on left, Symbiotic (MS) on right
 Time points: 10, 20, 30, 40, 50 (vs M5 baseline)
 Center labels show only time numbers (10, 20, 30, 40, 50).
-Style: reference image with colored center bands, per-group colored dots,
-       alternating grey bands, and clear section headers.
+Style: reference image with colored center bands, alternating grey bands.
+Upregulated genes → RED, Downregulated genes → BLUE, Non-significant → GREY.
 """
 
 import os
@@ -13,6 +13,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
+from matplotlib.lines import Line2D
 
 # ── Setup ──────────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -42,8 +43,8 @@ ms_files = [
 all_files = m_files + ms_files
 
 # ── Colors ─────────────────────────────────────────────────────────────────
-# Each group gets a unique color for both center band and significant dots
-GROUP_COLORS = {
+# Each group gets a unique color for the center band only
+BAND_COLORS = {
     "M10":  "#FF6347",   # tomato
     "M20":  "#FFA500",   # orange
     "M30":  "#FFD700",   # gold
@@ -62,9 +63,10 @@ TIME_LABELS = {
     "MS10": "10", "MS20": "20", "MS30": "30", "MS40": "40", "MS50": "50",
 }
 
+# Dot colors by regulation direction
+UP_COLOR = "#E74C3C"       # red for up-regulated
+DOWN_COLOR = "#3498DB"     # blue for down-regulated
 NONSIG_COLOR = "#CCCCCC"   # grey for non-significant
-UPREG_COLOR = "#E74C3C"    # red for up-regulated annotation
-DOWNREG_COLOR = "#3498DB"  # blue for down-regulated annotation
 
 
 # ── Read all data ──────────────────────────────────────────────────────────
@@ -73,8 +75,6 @@ def read_deg(filename, label):
     path = os.path.join(BASE_DIR, filename)
     df = pd.read_csv(path)
     cols = df.columns.tolist()
-    # Columns: 0=GeneID, 1=GeneName, 2=GeneDesc, 3=FC, 4=Log2FC,
-    #          5=Pvalue, 6=Padjust, 7=Significant, 8=Regulate
     col_map = {
         cols[0]: "GeneID",
         cols[1]: "GeneName",
@@ -93,8 +93,11 @@ def read_deg(filename, label):
     df = df[df["Pvalue"] > 0].copy()
     df["neg_log10p"] = -np.log10(df["Pvalue"])
     df["is_sig"] = df["Significant"].str.strip().str.lower() == "yes"
+    df["is_up"] = df["Regulate"].str.strip().str.lower() == "up"
+    df["is_down"] = df["Regulate"].str.strip().str.lower() == "down"
     df["label"] = label
-    return df[["GeneID", "Log2FC", "Pvalue", "neg_log10p", "is_sig", "Regulate", "label"]]
+    return df[["GeneID", "Log2FC", "Pvalue", "neg_log10p",
+               "is_sig", "is_up", "is_down", "Regulate", "label"]]
 
 
 frames = []
@@ -111,43 +114,50 @@ data["x"] = data["group_idx"] + rng.uniform(-0.35, 0.35, size=len(data))
 
 # ── Create figure ──────────────────────────────────────────────────────────
 n_groups = len(group_order)
-fig, ax = plt.subplots(figsize=(20, 9))
+fig, ax = plt.subplots(figsize=(22, 9))
 
-# Alternating grey background bands
+# Alternating light grey background bands
 for i in range(n_groups):
     if i % 2 == 0:
         ax.axvspan(i - 0.5, i + 0.5, color="#F5F5F5", zorder=0)
 
-# Vertical separator between M and MS blocks
+# Vertical separator between Non-symbiotic and Symbiotic blocks
 ax.axvline(x=4.5, color="grey", linewidth=1.5, linestyle="--", zorder=1, alpha=0.6)
 
-# Horizontal line at y=0 (behind center band)
+# Horizontal line at y=0
 ax.axhline(y=0, color="grey", linewidth=0.5, zorder=1)
 
-# ── Plot points (per-group coloring) ──────────────────────────────────────
+# ── Plot points (colored by regulation direction) ─────────────────────────
 for grp in group_order:
     grp_data = data[data["label"] == grp]
-    sig = grp_data[grp_data["is_sig"]]
-    nonsig = grp_data[~grp_data["is_sig"]]
 
     # Non-significant – grey
+    nonsig = grp_data[~grp_data["is_sig"]]
     ax.scatter(
         nonsig["x"], nonsig["Log2FC"],
-        c=NONSIG_COLOR, s=10, alpha=0.35, edgecolors="none", zorder=2,
+        c=NONSIG_COLOR, s=10, alpha=0.30, edgecolors="none", zorder=2,
     )
-    # Significant – group color
+
+    # Significant up-regulated – red
+    sig_up = grp_data[grp_data["is_sig"] & grp_data["is_up"]]
     ax.scatter(
-        sig["x"], sig["Log2FC"],
-        c=GROUP_COLORS[grp], s=16, alpha=0.75, edgecolors="none", zorder=3,
+        sig_up["x"], sig_up["Log2FC"],
+        c=UP_COLOR, s=18, alpha=0.75, edgecolors="none", zorder=3,
+    )
+
+    # Significant down-regulated – blue
+    sig_down = grp_data[grp_data["is_sig"] & grp_data["is_down"]]
+    ax.scatter(
+        sig_down["x"], sig_down["Log2FC"],
+        c=DOWN_COLOR, s=18, alpha=0.75, edgecolors="none", zorder=3,
     )
 
 # ── Center color bands with TIME-ONLY labels ──────────────────────────────
-band_height = 1.5  # half-height of center label band
+band_height = 1.3  # half-height of center label band
 for i, grp in enumerate(group_order):
-    color = GROUP_COLORS[grp]
+    color = BAND_COLORS[grp]
     time_label = TIME_LABELS[grp]
 
-    # Draw colored rounded rectangle at y=0
     rect = FancyBboxPatch(
         (i - 0.42, -band_height),
         0.84,
@@ -163,14 +173,13 @@ for i, grp in enumerate(group_order):
     ax.text(
         i, 0, time_label,
         ha="center", va="center",
-        fontsize=14, fontweight="bold", color="white",
+        fontsize=15, fontweight="bold", color="white",
         zorder=6,
     )
 
 # ── Axes styling ───────────────────────────────────────────────────────────
 ax.set_xlim(-0.7, n_groups - 0.3)
 
-# Determine y limits symmetrically
 y_abs_max = data["Log2FC"].abs().quantile(0.995)
 y_abs_max = max(y_abs_max, 6)
 ax.set_ylim(-y_abs_max * 1.18, y_abs_max * 1.18)
@@ -178,11 +187,10 @@ ax.set_ylim(-y_abs_max * 1.18, y_abs_max * 1.18)
 ax.set_ylabel("log₂FoldChange", fontsize=14, fontweight="bold")
 ax.set_xlabel("")
 
-# x-axis: no default tick labels
 ax.set_xticks(range(n_groups))
 ax.set_xticklabels([""] * n_groups)
 
-# Section headers: "Non-symbiotic (M)" and "Symbiotic (MS)"
+# Section headers
 n_m = len(m_files)
 n_ms = len(ms_files)
 m_center = (n_m - 1) / 2
@@ -203,31 +211,27 @@ ax.text(
 ax.text(
     -0.55, y_abs_max * 0.65,
     "Up-regulated ↑",
-    ha="left", va="center", fontsize=11, fontweight="bold", color=UPREG_COLOR,
+    ha="left", va="center", fontsize=11, fontweight="bold", color=UP_COLOR,
     rotation=90, zorder=8,
 )
 ax.text(
     -0.55, -y_abs_max * 0.65,
     "Down-regulated ↓",
-    ha="left", va="center", fontsize=11, fontweight="bold", color=DOWNREG_COLOR,
+    ha="left", va="center", fontsize=11, fontweight="bold", color=DOWN_COLOR,
     rotation=90, zorder=8,
 )
 
 # ── Legend ──────────────────────────────────────────────────────────────────
-handles = []
-for grp in group_order:
-    handles.append(
-        plt.Line2D([0], [0], marker='o', color='w',
-                   markerfacecolor=GROUP_COLORS[grp],
-                   markersize=7, label=grp)
-    )
-handles.append(
-    plt.Line2D([0], [0], marker='o', color='w',
-               markerfacecolor=NONSIG_COLOR,
-               markersize=7, label='Not Sig')
-)
-ax.legend(handles=handles, loc="upper right", fontsize=8.5,
-          framealpha=0.9, ncol=1, title="Group", title_fontsize=9)
+handles = [
+    Line2D([0], [0], marker='o', color='w', markerfacecolor=UP_COLOR,
+           markersize=8, label='Up-regulated'),
+    Line2D([0], [0], marker='o', color='w', markerfacecolor=DOWN_COLOR,
+           markersize=8, label='Down-regulated'),
+    Line2D([0], [0], marker='o', color='w', markerfacecolor=NONSIG_COLOR,
+           markersize=8, label='Not Significant'),
+]
+ax.legend(handles=handles, loc="upper right", fontsize=10,
+          framealpha=0.9, title="Regulation", title_fontsize=10)
 
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
@@ -235,7 +239,7 @@ ax.spines["right"].set_visible(False)
 # Title
 ax.set_title(
     "Combined Multi-group Differential Volcano Plot\n"
-    "(Non-symbiotic M vs Symbiotic MS, Time: 10–50 d)",
+    "(Non-symbiotic vs Symbiotic, Time: 10–50 d)",
     fontsize=15, fontweight="bold", pad=18,
 )
 
