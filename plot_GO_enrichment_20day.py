@@ -32,7 +32,6 @@ OUT_PDF = os.path.join(DATA_DIR, "GO_enrichment_20day_elimKS.pdf")
 # ── Configuration ──────────────────────────────────────────────────────────
 TOP_N_PER_CATEGORY = 10          # top terms per ontology
 MAX_TERM_LABEL_LEN = 55          # truncate long GO term names
-PVALUE_CAP = 0.05                # cap for colour bar display
 
 # ── 1. Load data ──────────────────────────────────────────────────────────
 df = pd.read_csv(GO_ALL_FILE)
