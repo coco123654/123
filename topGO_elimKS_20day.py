@@ -25,7 +25,7 @@ from goatools.obo_parser import GODag
 # Configuration
 # ============================================================
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
-OBO_FILE = "/tmp/go-ontology/src/ontology/go-edit.obo"
+OBO_FILE = os.environ.get("GO_OBO_FILE", "/tmp/go-ontology/src/ontology/go-edit.obo")
 ANNOT_FILE = os.path.join(DATA_DIR, "gene.count.matrix.annot.xls")
 
 # DEG files
@@ -270,6 +270,8 @@ def run_elimKS(target_genes, all_genes, gene2go_orig, dag, gene_pvalues, ontolog
     all_genes : set - background genes
     gene2go_orig : dict - gene to GO term mappings (original, not propagated)
     dag : GODag - GO DAG
+    gene_pvalues : dict - gene ID to p-value mapping for target genes
+        (from differential expression analysis; lower = more significant)
     ontology : str - "BP", "MF", or "CC"
     pvalue_threshold : float - significance threshold for elimination
     min_annotated : int - minimum number of annotated genes for a GO term
