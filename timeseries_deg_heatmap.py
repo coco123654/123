@@ -200,7 +200,8 @@ category_colors = {
 
 for cat_id in sorted(category_names.keys()):
     n = np.sum(labels == cat_id)
-    print(f"  Category {cat_id} ({category_names[cat_id].replace(chr(10),' ')}): {n} genes")
+    name = category_names[cat_id].replace('\n', ' ')
+    print(f"  Category {cat_id} ({name}): {n} genes")
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 6.  ORDER ROWS: group by category, cluster within each group
