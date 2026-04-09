@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 import warnings
 
-warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 # ── Configuration ──────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -30,6 +30,12 @@ COLOR_SPECIFIC_UP = "#FDEAAD"   # light yellow – specifically upregulated
 COLOR_COMMON_UP = "#E8A317"     # orange/gold  – common upregulated
 COLOR_COMMON_DOWN = "#4A7FB5"   # blue         – common downregulated
 COLOR_SPECIFIC_DOWN = "#B0D4E8" # light blue   – specifically downregulated
+
+# Layout parameters
+FIGURE_SIZE = (16, 8)
+BAR_WIDTH = 0.6
+GROUP_GAP = 3.0       # distance between time-point groups
+BAR_OFFSET = 0.12     # offset between Asym and Sym bars within a group
 
 plt.rcParams["font.family"] = "DejaVu Sans"
 plt.rcParams["axes.unicode_minus"] = False
@@ -46,9 +52,12 @@ def read_deg_csv(filepath):
     cols[8] = "Regulate"
     df.columns = cols
 
-    sig = df[df["Significant"].str.strip().str.lower() == "yes"]
-    up_genes = set(sig.loc[sig["Regulate"].str.strip().str.lower() == "up", "GeneID"])
-    down_genes = set(sig.loc[sig["Regulate"].str.strip().str.lower() == "down", "GeneID"])
+    df["Significant"] = df["Significant"].str.strip().str.lower()
+    df["Regulate"] = df["Regulate"].str.strip().str.lower()
+
+    sig = df[df["Significant"] == "yes"]
+    up_genes = set(sig.loc[sig["Regulate"] == "up", "GeneID"])
+    down_genes = set(sig.loc[sig["Regulate"] == "down", "GeneID"])
     return up_genes, down_genes
 
 
@@ -89,42 +98,40 @@ for tp in TIME_POINTS:
 
 
 # ── Draw the figure ───────────────────────────────────────────────────────
-fig, ax = plt.subplots(figsize=(16, 8))
+fig, ax = plt.subplots(figsize=FIGURE_SIZE)
 
 n_tp = len(TIME_POINTS)
-bar_width = 0.6
-group_gap = 3.0  # distance between time-point groups
 
 for idx, res in enumerate(results):
-    x_center = idx * group_gap
-    x_asym = x_center - bar_width / 2 - 0.12
-    x_sym = x_center + bar_width / 2 + 0.12
+    x_center = idx * GROUP_GAP
+    x_asym = x_center - BAR_WIDTH / 2 - BAR_OFFSET
+    x_sym = x_center + BAR_WIDTH / 2 + BAR_OFFSET
 
     # ── UP bars (positive) ────────────────────────────────────────────────
     # Asymbiotic UP: common (bottom) + specific (top)
-    ax.bar(x_asym, res["common_up"], bar_width, color=COLOR_COMMON_UP,
+    ax.bar(x_asym, res["common_up"], BAR_WIDTH, color=COLOR_COMMON_UP,
            edgecolor="white", linewidth=0.5)
-    ax.bar(x_asym, res["specific_up_asym"], bar_width,
+    ax.bar(x_asym, res["specific_up_asym"], BAR_WIDTH,
            bottom=res["common_up"], color=COLOR_SPECIFIC_UP,
            edgecolor="white", linewidth=0.5)
 
     # Symbiotic UP
-    ax.bar(x_sym, res["common_up"], bar_width, color=COLOR_COMMON_UP,
+    ax.bar(x_sym, res["common_up"], BAR_WIDTH, color=COLOR_COMMON_UP,
            edgecolor="white", linewidth=0.5)
-    ax.bar(x_sym, res["specific_up_sym"], bar_width,
+    ax.bar(x_sym, res["specific_up_sym"], BAR_WIDTH,
            bottom=res["common_up"], color=COLOR_SPECIFIC_UP,
            edgecolor="white", linewidth=0.5)
 
     # ── DOWN bars (negative) ──────────────────────────────────────────────
-    ax.bar(x_asym, -res["common_down"], bar_width, color=COLOR_COMMON_DOWN,
+    ax.bar(x_asym, -res["common_down"], BAR_WIDTH, color=COLOR_COMMON_DOWN,
            edgecolor="white", linewidth=0.5)
-    ax.bar(x_asym, -res["specific_down_asym"], bar_width,
+    ax.bar(x_asym, -res["specific_down_asym"], BAR_WIDTH,
            bottom=-res["common_down"], color=COLOR_SPECIFIC_DOWN,
            edgecolor="white", linewidth=0.5)
 
-    ax.bar(x_sym, -res["common_down"], bar_width, color=COLOR_COMMON_DOWN,
+    ax.bar(x_sym, -res["common_down"], BAR_WIDTH, color=COLOR_COMMON_DOWN,
            edgecolor="white", linewidth=0.5)
-    ax.bar(x_sym, -res["specific_down_sym"], bar_width,
+    ax.bar(x_sym, -res["specific_down_sym"], BAR_WIDTH,
            bottom=-res["common_down"], color=COLOR_SPECIFIC_DOWN,
            edgecolor="white", linewidth=0.5)
 
@@ -165,7 +172,7 @@ for idx, res in enumerate(results):
 
 # ── Time-point headers ────────────────────────────────────────────────────
 for idx, label in enumerate(TIME_LABELS):
-    x_center = idx * group_gap
+    x_center = idx * GROUP_GAP
     ax.text(x_center, 1.06, label, ha="center", va="bottom",
             fontsize=12, fontweight="bold",
             transform=ax.get_xaxis_transform())
