@@ -7,14 +7,15 @@ Replicates the style of Figure 3B from the reference paper:
   - Log2FC colour scale (blue–white–orange)
   - Hierarchical clustering with dendrogram
   - Row-side colour annotation for 4 temporal pattern categories
-  - Time points labelled as 10, 20, 30, 40, 50
+  - Time points labelled as 10, 20, 30, 40, 50 (days)
+  - Within EACH category, genes where symbiotic is up-regulated AND
+    non-symbiotic is down-regulated are grouped together first.
 
 Categories:
   1. 共生早期快速诱导型       – Early rapid induction in symbiosis
   2. 共生中期持续升高型       – Mid-term continuous increase in symbiosis
   3. 共生后期稳定维持型       – Late stable maintenance in symbiosis
   4. 非共生衰减而共生保持激活型 – Asymbiotic decay, symbiotic maintained
-     Sub-sorted: symbiotic-up & non-symbiotic-down genes grouped first
 """
 
 import pandas as pd
@@ -63,10 +64,8 @@ sym_tpm = pd.read_csv(
 
 time_points = [10, 20, 30, 40, 50]
 
-# Collect DEGs that are differentially expressed in symbiotic OR non-symbiotic
-# compared to the M5 baseline
-sym_degs = set()     # DEGs in symbiotic condition
-asym_degs = set()    # DEGs in non-symbiotic condition
+sym_degs = set()
+asym_degs = set()
 
 for tp in time_points:
     # Symbiotic DEGs (MS vs M5)
@@ -88,19 +87,14 @@ print(f"Union DEGs: {len(all_degs)}")
 # 3.  BUILD LOG2FC MATRIX (vs M5 baseline)
 # ═══════════════════════════════════════════════════════════════════════════
 
-# Mean TPM columns
-asym_mean_cols = [f"M{tp}" for tp in time_points]    # M10 M20 M30 M40 M50
-sym_mean_cols  = [f"MS{tp}" for tp in time_points]    # MS10 MS20 MS30 MS40 MS50
+asym_mean_cols = [f"M{tp}" for tp in time_points]
+sym_mean_cols  = [f"MS{tp}" for tp in time_points]
 
-# Keep genes present in both expression files
 common_genes = sorted(all_degs & set(asym_tpm.index) & set(sym_tpm.index))
 print(f"DEGs present in both expression files: {len(common_genes)}")
 
-# Small pseudocount to avoid log2(0); 0.01 chosen to be negligible relative
-# to typical TPM values while preventing -inf in the log2FC calculation.
 pseudocount = 0.01
 
-# Baseline M5 (from the non-symbiotic file; both files share the same M5)
 baseline_m5 = asym_tpm.loc[common_genes, "M5"].values.astype(float)
 
 # Log2FC for non-symbiotic (M) vs M5
@@ -115,29 +109,28 @@ for col in sym_mean_cols:
     vals = sym_tpm.loc[common_genes, col].values.astype(float)
     ms_lfc[col] = np.log2((vals + pseudocount) / (baseline_m5 + pseudocount))
 
-m_lfc_arr  = m_lfc.values    # shape (n_genes, 5)
-ms_lfc_arr = ms_lfc.values   # shape (n_genes, 5)
+m_lfc_arr  = m_lfc.values
+ms_lfc_arr = ms_lfc.values
 
-# Combined matrix: [M10..M50, MS10..MS50] all in log2FC
-lfc_combined = np.hstack([m_lfc_arr, ms_lfc_arr])  # (n_genes, 10)
+lfc_combined = np.hstack([m_lfc_arr, ms_lfc_arr])
 
 # ═══════════════════════════════════════════════════════════════════════════
 # 4.  CLASSIFY GENES INTO 4 TEMPORAL PATTERN CATEGORIES
 # ═══════════════════════════════════════════════════════════════════════════
 
-labels = []       # category label per gene
-sub_sort = []     # sub-sort key for category 4
+labels = []
+# For ALL categories: determine sub-group (sym-up & asym-down first)
+# 0 = sym↑asym↓, 1 = both↑, 2 = both↓, 3 = sym↓asym↑, 4 = other
+sub_groups = []
 
-for i in range(len(common_genes)):
-    m  = m_lfc_arr[i]     # M10..M50 log2FC vs M5
-    ms = ms_lfc_arr[i]    # MS10..MS50 log2FC vs M5
+for i, gene in enumerate(common_genes):
+    m  = m_lfc_arr[i]
+    ms = ms_lfc_arr[i]
 
-    # Phase summaries for symbiotic
-    ms_early = ms[0]                 # 10d
-    ms_mid   = np.mean(ms[1:3])      # 20-30d
-    ms_late  = np.mean(ms[3:5])      # 40-50d
+    ms_early = ms[0]
+    ms_mid   = np.mean(ms[1:3])
+    ms_late  = np.mean(ms[3:5])
 
-    # Phase summaries for non-symbiotic
     m_early = m[0]
     m_mid   = np.mean(m[1:3])
     m_late  = np.mean(m[3:5])
@@ -145,11 +138,9 @@ for i in range(len(common_genes)):
     ms_mean = np.mean(ms)
     m_mean  = np.mean(m)
 
-    # --- Scoring for each category ---
     scores = {}
 
     # Category 1: 共生早期快速诱导型
-    # Symbiotic peaks early (MS10 high, then drops or stays flat); MS10 > M10
     scores[1] = (
         1.5 * (ms_early - ms_mid)
         + (ms_early - ms_late)
@@ -157,7 +148,6 @@ for i in range(len(common_genes)):
     )
 
     # Category 2: 共生中期持续升高型
-    # Symbiotic rises from early to mid; mid clearly > early; mid > asymbiotic mid
     scores[2] = (
         1.5 * (ms_mid - ms_early)
         + (ms_mid - m_mid)
@@ -165,7 +155,6 @@ for i in range(len(common_genes)):
     )
 
     # Category 3: 共生后期稳定维持型
-    # Symbiotic high in late phase; late > early; late > asymbiotic late
     scores[3] = (
         (ms_late - ms_early)
         + 1.5 * (ms_late - m_late)
@@ -173,7 +162,6 @@ for i in range(len(common_genes)):
     )
 
     # Category 4: 非共生衰减而共生保持激活型
-    # Non-symbiotic decays (early -> late drops); symbiotic stays active
     scores[4] = (
         1.5 * (m_early - m_late)
         + (ms_mean - m_mean)
@@ -183,14 +171,27 @@ for i in range(len(common_genes)):
     best = max(scores, key=scores.get)
     labels.append(best)
 
-    # Sub-sort for category 4: prioritize sym-up & asym-down
-    # Positive = sym up AND asym down (should come first)
-    is_sym_up = ms_mean > 0.5
-    is_asym_down = m_late < -0.5
-    sub_sort.append(1 if (is_sym_up and is_asym_down) else 0)
+    # Determine sub-group for sorting within each category using
+    # overall mean log2FC direction (threshold = 0).
+    # This groups genes with opposite regulation patterns together.
+    is_sym_up = ms_mean > 0
+    is_sym_down = ms_mean < 0
+    is_asym_up = m_mean > 0
+    is_asym_down = m_mean < 0
+
+    if is_sym_up and is_asym_down:
+        sub_groups.append(0)   # sym↑ asym↓ (排最前)
+    elif is_sym_up and is_asym_up:
+        sub_groups.append(1)   # both up
+    elif is_sym_down and is_asym_down:
+        sub_groups.append(2)   # both down
+    elif is_sym_down and is_asym_up:
+        sub_groups.append(3)   # sym↓ asym↑
+    else:
+        sub_groups.append(4)   # other
 
 labels = np.array(labels)
-sub_sort = np.array(sub_sort)
+sub_groups = np.array(sub_groups)
 
 category_names = {
     1: "共生早期快速诱导型",
@@ -200,23 +201,38 @@ category_names = {
 }
 
 category_colors = {
-    1: "#E8443A",   # red
-    2: "#F5A623",   # orange
-    3: "#4CAF50",   # green
-    4: "#2979B9",   # blue
+    1: "#E8443A",
+    2: "#F5A623",
+    3: "#4CAF50",
+    4: "#2979B9",
 }
 
 for cat_id in sorted(category_names.keys()):
     n = np.sum(labels == cat_id)
-    print(f"  Category {cat_id} ({category_names[cat_id]}): {n} genes")
+    # Count sub-groups
+    cat_mask = labels == cat_id
+    n_sym_up_asym_down = np.sum((cat_mask) & (sub_groups == 0))
+    print(f"  Category {cat_id} ({category_names[cat_id]}): {n} genes "
+          f"(sym↑asym↓: {n_sym_up_asym_down})")
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 5.  ORDER ROWS: group by category, sub-sort cat4, cluster within groups
+# 5.  ORDER ROWS: group by category, sub-sort within each, cluster within
 # ═══════════════════════════════════════════════════════════════════════════
+
+def cluster_indices(indices, data):
+    """Hierarchically cluster a set of row indices and return ordered indices."""
+    if len(indices) <= 2:
+        return indices.tolist()
+    sub_data = data[indices]
+    Z = linkage(sub_data, method="ward", metric="euclidean")
+    order = leaves_list(Z)
+    return indices[order].tolist()
+
 
 ordered_idx = []
-cat_linkages = {}   # {cat_id: (Z, n_genes_before, n_genes_in_cat)}
-cat_boundaries = [] # [(start_row, end_row, cat_id), ...]
+cat_boundaries = []
+# Track sub-group boundaries within each category for optional annotation
+subgroup_info = []  # (start, end, cat_id, sub_group_id)
 
 row_cursor = 0
 for cat_id in sorted(category_names.keys()):
@@ -224,103 +240,97 @@ for cat_id in sorted(category_names.keys()):
     if len(mask) == 0:
         continue
 
-    if cat_id == 4:
-        # Within category 4: first group sym-up & asym-down, then others
-        group_a = mask[sub_sort[mask] == 1]  # sym-up & asym-down
-        group_b = mask[sub_sort[mask] == 0]  # others
-        combined_cat4 = []
-        for sub_mask in [group_a, group_b]:
-            if len(sub_mask) <= 2:
-                combined_cat4.extend(sub_mask.tolist())
-            else:
-                sub_data = lfc_combined[sub_mask]
-                Z = linkage(sub_data, method="ward", metric="euclidean")
-                order = leaves_list(Z)
-                combined_cat4.extend(sub_mask[order].tolist())
-        ordered_idx.extend(combined_cat4)
-        n_cat = len(combined_cat4)
-        # Compute linkage for the whole category 4 (for dendrogram display)
-        if n_cat > 2:
-            cat_linkages[cat_id] = (
-                linkage(lfc_combined[combined_cat4], method="ward"),
-                row_cursor,
-                n_cat,
-            )
-    else:
-        if len(mask) <= 2:
-            ordered_idx.extend(mask.tolist())
-            n_cat = len(mask)
-        else:
-            sub_data = lfc_combined[mask]
-            Z = linkage(sub_data, method="ward", metric="euclidean")
-            order = leaves_list(Z)
-            ordered_idx.extend(mask[order].tolist())
-            n_cat = len(mask)
-            cat_linkages[cat_id] = (Z, row_cursor, n_cat)
+    cat_start = row_cursor
 
-    cat_boundaries.append((row_cursor, row_cursor + n_cat, cat_id))
-    row_cursor += n_cat
+    # Sub-sort: group 0 (sym-up & asym-down) first, then 1, 2, 3, 4
+    for sg in [0, 1, 2, 3, 4]:
+        sg_mask = mask[sub_groups[mask] == sg]
+        if len(sg_mask) == 0:
+            continue
+        sg_start = row_cursor
+        clustered = cluster_indices(sg_mask, lfc_combined)
+        ordered_idx.extend(clustered)
+        row_cursor += len(clustered)
+        subgroup_info.append((sg_start, row_cursor, cat_id, sg))
+
+    cat_boundaries.append((cat_start, row_cursor, cat_id))
 
 ordered_idx = np.array(ordered_idx)
 heatmap_matrix = lfc_combined[ordered_idx]
 ordered_labels = labels[ordered_idx]
-
-# ═══════════════════════════════════════════════════════════════════════════
-# 6.  PLOT (Figure B style)
-# ═══════════════════════════════════════════════════════════════════════════
+ordered_sub_groups = sub_groups[ordered_idx]
 
 n_genes = heatmap_matrix.shape[0]
-fig_h = max(10, min(18, n_genes * 0.004 + 4))
+print(f"\nTotal genes in heatmap: {n_genes}")
 
-fig = plt.figure(figsize=(10, fig_h))
+# ═══════════════════════════════════════════════════════════════════════════
+# 6.  COMPUTE DENDROGRAMS PER CATEGORY (for display)
+# ═══════════════════════════════════════════════════════════════════════════
 
-# GridSpec: [dendrogram | row_color | asym_heatmap | sym_heatmap | colorbar_space]
+cat_linkages = {}
+for start, end, cat_id in cat_boundaries:
+    n_cat = end - start
+    if n_cat > 2:
+        Z = linkage(heatmap_matrix[start:end], method="ward", metric="euclidean")
+        cat_linkages[cat_id] = (Z, start, n_cat)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 7.  PLOT (Figure 3B pheatmap style)
+# ═══════════════════════════════════════════════════════════════════════════
+
+fig_h = 14  # compact height matching pheatmap style
+fig_w = 8
+
+fig = plt.figure(figsize=(fig_w, fig_h))
+
+# GridSpec layout:
+#   Row 0: [empty | empty | colorbar_mini | asym_label | gap | sym_label | empty]
+#   Row 1: [dendro | row_color | gap | asym_heat | gap | sym_heat | empty]
+#   Row 2: [empty | empty | empty | legend_area spanning cols | empty]
 gs = gridspec.GridSpec(
-    2, 5,
-    width_ratios=[1.2, 0.3, 4, 4, 0.15],
-    height_ratios=[0.3, 20],
-    wspace=0.02, hspace=0.03,
+    3, 7,
+    width_ratios=[0.8, 0.2, 0.04, 3.5, 0.06, 3.5, 0.04],
+    height_ratios=[0.4, 20, 0.8],
+    wspace=0.015, hspace=0.03,
 )
 
-# ── Colour scale (blue–white–orange, matching the reference) ──
+# ── Colour scale (blue–white–orange, matching the reference paper) ──
 cmap = LinearSegmentedColormap.from_list(
     "ref_bwo",
-    ["#2166AC", "#92C5DE", "#F7F7F7", "#FDBF6F", "#E8601C"],
+    ["#2166AC", "#67A9CF", "#D1E5F0", "#F7F7F7", "#FDDBC7", "#EF8A62", "#B2182B"],
     N=256,
 )
 
-# Clip at 99th percentile (max ±15) to match the reference figure scale range
 vmax_val = min(15, np.percentile(np.abs(heatmap_matrix), 99))
 vmin_val = -vmax_val
 
-# ── Top labels (Asymbiotic / Symbiotic) ──
-ax_top_dendro = fig.add_subplot(gs[0, 0])
-ax_top_dendro.axis("off")
-ax_top_color = fig.add_subplot(gs[0, 1])
-ax_top_color.axis("off")
+# ── Top row: condition labels & colorbar ──
+for ci in [0, 1, 2, 6]:
+    ax_ = fig.add_subplot(gs[0, ci])
+    ax_.axis("off")
 
-ax_asym_label = fig.add_subplot(gs[0, 2])
+ax_asym_label = fig.add_subplot(gs[0, 3])
 ax_asym_label.set_xlim(0, 1)
 ax_asym_label.set_ylim(0, 1)
-ax_asym_label.axhspan(0.3, 0.7, color="#E8943A", alpha=0.8)
+ax_asym_label.axhspan(0.15, 0.85, color="#E8943A", alpha=0.9)
 ax_asym_label.text(
     0.5, 0.5, "Asymbiotic", ha="center", va="center",
-    fontsize=13, fontweight="bold", color="white",
+    fontsize=11, fontweight="bold", color="white",
 )
 ax_asym_label.axis("off")
 
-ax_sym_label = fig.add_subplot(gs[0, 3])
+ax_gap_top = fig.add_subplot(gs[0, 4])
+ax_gap_top.axis("off")
+
+ax_sym_label = fig.add_subplot(gs[0, 5])
 ax_sym_label.set_xlim(0, 1)
 ax_sym_label.set_ylim(0, 1)
-ax_sym_label.axhspan(0.3, 0.7, color="#1B6FB5", alpha=0.8)
+ax_sym_label.axhspan(0.15, 0.85, color="#1B6FB5", alpha=0.9)
 ax_sym_label.text(
     0.5, 0.5, "Symbiotic", ha="center", va="center",
-    fontsize=13, fontweight="bold", color="white",
+    fontsize=11, fontweight="bold", color="white",
 )
 ax_sym_label.axis("off")
-
-ax_top_cb = fig.add_subplot(gs[0, 4])
-ax_top_cb.axis("off")
 
 # ── Dendrogram (left): per-category sub-dendrograms ──
 ax_dendro = fig.add_subplot(gs[1, 0])
@@ -328,7 +338,6 @@ ax_dendro.set_ylim(0, n_genes)
 ax_dendro.invert_yaxis()
 
 for cat_id, (Z_cat, row_start, n_cat) in cat_linkages.items():
-    # Render dendrogram into a temporary axes to extract coordinates
     fig_tmp, ax_tmp = plt.subplots(figsize=(2, 2))
     d = dendrogram(
         Z_cat,
@@ -336,34 +345,28 @@ for cat_id, (Z_cat, row_start, n_cat) in cat_linkages.items():
         ax=ax_tmp,
         no_labels=True,
         color_threshold=0,
-        above_threshold_color=category_colors[cat_id],
+        above_threshold_color="#333333",
     )
     plt.close(fig_tmp)
 
-    # Map dendrogram coordinates into the main axes
-    icoord = np.array(d["icoord"])  # y coords (leaf positions)
-    dcoord = np.array(d["dcoord"])  # x coords (distances)
+    icoord = np.array(d["icoord"])
+    dcoord = np.array(d["dcoord"])
 
-    # Original leaf range: 5 to 5 + (n_cat-1)*10
     y_min_orig = 5.0
     y_max_orig = 5.0 + (n_cat - 1) * 10.0
     y_range_orig = y_max_orig - y_min_orig if y_max_orig != y_min_orig else 1.0
 
-    # Target range in row-space
     y_min_target = row_start + 0.5
     y_max_target = row_start + n_cat - 0.5
 
-    # Normalise x (distance) to [0, 1]
     x_max = dcoord.max() if dcoord.max() > 0 else 1.0
 
     for ic, dc in zip(icoord, dcoord):
-        # Map y (icoord) from original leaf space to target row space
         yy = y_min_target + (np.array(ic) - y_min_orig) / y_range_orig * (
             y_max_target - y_min_target
         )
-        # Map x (dcoord) — flip so root is at left edge
         xx = 1.0 - np.array(dc) / x_max
-        ax_dendro.plot(xx, yy, color=category_colors[cat_id], lw=0.4, solid_capstyle="round")
+        ax_dendro.plot(xx, yy, color="#333333", lw=0.25, solid_capstyle="round")
 
 ax_dendro.set_xlim(0, 1)
 ax_dendro.axis("off")
@@ -376,15 +379,21 @@ for i, c in enumerate(row_colors):
 ax_row.set_ylim(0, n_genes)
 ax_row.set_xlim(0, 1)
 ax_row.invert_yaxis()
-
-# Draw horizontal lines between categories
-for start, end, cat_id in cat_boundaries:
-    ax_row.axhline(y=start, color="white", lw=1.0)
-    ax_row.axhline(y=end, color="white", lw=1.0)
+for start, end, _ in cat_boundaries:
+    ax_row.axhline(y=start, color="white", lw=1.2)
+    ax_row.axhline(y=end, color="white", lw=1.2)
 ax_row.axis("off")
 
-# ── Heatmap: Asymbiotic (left half) ──
-ax_asym = fig.add_subplot(gs[1, 2])
+# ── Gap columns ──
+ax_gap1 = fig.add_subplot(gs[1, 2])
+ax_gap1.axis("off")
+ax_gap2 = fig.add_subplot(gs[1, 4])
+ax_gap2.axis("off")
+ax_gap3 = fig.add_subplot(gs[1, 6])
+ax_gap3.axis("off")
+
+# ── Heatmap: Asymbiotic (left) ──
+ax_asym = fig.add_subplot(gs[1, 3])
 im_asym = ax_asym.imshow(
     heatmap_matrix[:, :5],
     aspect="auto",
@@ -394,16 +403,17 @@ im_asym = ax_asym.imshow(
     interpolation="nearest",
 )
 ax_asym.set_xticks(range(5))
-ax_asym.set_xticklabels([f"{tp}" for tp in time_points], fontsize=10)
+ax_asym.set_xticklabels([str(tp) for tp in time_points], fontsize=9)
 ax_asym.xaxis.set_ticks_position("bottom")
+ax_asym.tick_params(axis="x", length=3, pad=2)
 ax_asym.set_yticks([])
-# Draw category boundary lines
-for start, end, cat_id in cat_boundaries:
-    ax_asym.axhline(y=start - 0.5, color="white", lw=1.5)
-    ax_asym.axhline(y=end - 0.5, color="white", lw=1.5)
+for start, end, _ in cat_boundaries:
+    ax_asym.axhline(y=start - 0.5, color="white", lw=1.8)
+    ax_asym.axhline(y=end - 0.5, color="white", lw=1.8)
+ax_asym.set_xlabel("(d)", fontsize=9, labelpad=3)
 
-# ── Heatmap: Symbiotic (right half) ──
-ax_sym = fig.add_subplot(gs[1, 3])
+# ── Heatmap: Symbiotic (right) ──
+ax_sym = fig.add_subplot(gs[1, 5])
 im_sym = ax_sym.imshow(
     heatmap_matrix[:, 5:],
     aspect="auto",
@@ -413,44 +423,50 @@ im_sym = ax_sym.imshow(
     interpolation="nearest",
 )
 ax_sym.set_xticks(range(5))
-ax_sym.set_xticklabels([f"{tp}" for tp in time_points], fontsize=10)
+ax_sym.set_xticklabels([str(tp) for tp in time_points], fontsize=9)
 ax_sym.xaxis.set_ticks_position("bottom")
+ax_sym.tick_params(axis="x", length=3, pad=2)
 ax_sym.set_yticks([])
-# Draw category boundary lines
-for start, end, cat_id in cat_boundaries:
-    ax_sym.axhline(y=start - 0.5, color="white", lw=1.5)
-    ax_sym.axhline(y=end - 0.5, color="white", lw=1.5)
+for start, end, _ in cat_boundaries:
+    ax_sym.axhline(y=start - 0.5, color="white", lw=1.8)
+    ax_sym.axhline(y=end - 0.5, color="white", lw=1.8)
+ax_sym.set_xlabel("(d)", fontsize=9, labelpad=3)
 
-ax_sym.set_xlabel("(d)", fontsize=10)
-ax_asym.set_xlabel("(d)", fontsize=10)
+# ── Colour bar (inset in top-right area of symbiotic panel) ──
+# Place a small horizontal colorbar above the symbiotic heatmap
+cbar_ax = fig.add_axes([0.72, 0.91, 0.15, 0.012])  # [left, bottom, width, height]
+cbar = fig.colorbar(im_sym, cax=cbar_ax, orientation="horizontal")
+cbar.ax.tick_params(labelsize=7, length=2, pad=1)
+cbar.set_ticks([vmin_val, 0, vmax_val])
+cbar.set_ticklabels([f"{vmin_val:.0f}", "0", f"{vmax_val:.0f}"])
+cbar_ax.set_title("Log$_2$FC", fontsize=8, pad=3)
 
-# ── Colour bar (right edge) ──
-cbar_ax = fig.add_subplot(gs[1, 4])
-cbar = fig.colorbar(im_sym, cax=cbar_ax)
-cbar.set_label("Log$_2$FC", fontsize=10)
-cbar.ax.tick_params(labelsize=8)
-
-# ── Category legend (bottom) ──
+# ── Category legend (bottom row) ──
+ax_legend = fig.add_subplot(gs[2, :])
+ax_legend.axis("off")
 legend_patches = [
     Patch(facecolor=category_colors[k], label=f"{k}. {category_names[k]}")
     for k in sorted(category_names.keys())
 ]
-fig.legend(
+legend = ax_legend.legend(
     handles=legend_patches,
-    loc="lower center",
+    loc="center",
     ncol=2,
-    fontsize=9,
+    fontsize=8,
     frameon=True,
     edgecolor="#CCCCCC",
-    bbox_to_anchor=(0.55, -0.02),
+    fancybox=False,
+    handlelength=1.2,
+    handletextpad=0.5,
+    columnspacing=1.5,
 )
 
 # ── Title ──
 fig.suptitle(
     "Hierarchical Clustering of DEGs – Asymbiotic vs Symbiotic (10–50 d)",
-    fontsize=14,
+    fontsize=12,
     fontweight="bold",
-    y=0.99,
+    y=0.97,
 )
 
 plt.savefig(
