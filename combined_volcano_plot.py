@@ -229,13 +229,15 @@ handles = [
     Line2D([0], [0], marker='o', color='w', markerfacecolor=NONSIG_COLOR,
            markersize=8, label='Not Significant'),
 ]
-ax.legend(handles=handles, loc="lower right", fontsize=10,
+ax.legend(handles=handles, loc="upper left", fontsize=10,
           framealpha=0.9, title="Regulation", title_fontsize=10,
-          bbox_to_anchor=(1.0, -0.18), borderpad=1.0, handletextpad=1.2)
+          bbox_to_anchor=(1.02, 1.0), borderpad=1.0, handletextpad=1.2)
 
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 ax.spines["bottom"].set_visible(False)
+ax.spines["left"].set_bounds(-y_abs_max, y_abs_max)
+ax.tick_params(bottom=False)
 
 # Title
 ax.set_title(
