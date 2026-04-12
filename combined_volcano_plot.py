@@ -124,8 +124,7 @@ for i in range(n_groups):
 # Vertical separator between Non-symbiotic and Symbiotic blocks
 ax.axvline(x=4.5, color="grey", linewidth=1.5, linestyle="--", zorder=1, alpha=0.6)
 
-# Horizontal line at y=0
-ax.axhline(y=0, color="grey", linewidth=0.5, zorder=1)
+# Horizontal line at y=0 removed per request
 
 # ── Plot points (colored by regulation direction) ─────────────────────────
 for grp in group_order:
@@ -153,19 +152,19 @@ for grp in group_order:
     )
 
 # ── Center color bands with TIME-ONLY labels ──────────────────────────────
-band_height = 1.3  # half-height of center label band
+band_height = 0.75  # half-height of center label band
 for i, grp in enumerate(group_order):
     color = BAND_COLORS[grp]
     time_label = TIME_LABELS[grp]
 
     rect = FancyBboxPatch(
-        (i - 0.42, -band_height),
-        0.84,
+        (i - 0.30, -band_height),
+        0.60,
         2 * band_height,
-        boxstyle="round,pad=0.05",
+        boxstyle="round,pad=0.04",
         facecolor=color,
         edgecolor="white",
-        linewidth=1.5,
+        linewidth=1.2,
         alpha=0.92,
         zorder=5,
     )
@@ -173,7 +172,7 @@ for i, grp in enumerate(group_order):
     ax.text(
         i, 0, time_label,
         ha="center", va="center",
-        fontsize=15, fontweight="bold", color="white",
+        fontsize=12, fontweight="bold", color="white",
         zorder=6,
     )
 
@@ -197,12 +196,12 @@ m_center = (n_m - 1) / 2
 ms_center = n_m + (n_ms - 1) / 2
 
 ax.text(
-    m_center, -y_abs_max * 1.10,
-    "Non-symbiotic (M)",
+    m_center, -y_abs_max * 1.16,
+    "Asymbiotic (M)",
     ha="center", va="top", fontsize=13, fontweight="bold", color="#555",
 )
 ax.text(
-    ms_center, -y_abs_max * 1.10,
+    ms_center, -y_abs_max * 1.16,
     "Symbiotic (MS)",
     ha="center", va="top", fontsize=13, fontweight="bold", color="#555",
 )
@@ -230,16 +229,18 @@ handles = [
     Line2D([0], [0], marker='o', color='w', markerfacecolor=NONSIG_COLOR,
            markersize=8, label='Not Significant'),
 ]
-ax.legend(handles=handles, loc="upper right", fontsize=10,
-          framealpha=0.9, title="Regulation", title_fontsize=10)
+ax.legend(handles=handles, loc="lower right", fontsize=10,
+          framealpha=0.9, title="Regulation", title_fontsize=10,
+          bbox_to_anchor=(1.0, -0.18), borderpad=1.0, handletextpad=1.2)
 
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
+ax.spines["bottom"].set_visible(False)
 
 # Title
 ax.set_title(
     "Combined Multi-group Differential Volcano Plot\n"
-    "(Non-symbiotic vs Symbiotic, Time: 10–50 d)",
+    "(Asymbiotic vs Symbiotic, Time: 10–50 d)",
     fontsize=15, fontweight="bold", pad=18,
 )
 
